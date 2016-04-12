@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div>
+      <% if(session.user != null){ %>
+      <a href="#">${ session.user.name }</a>=====><a href="post/new.html">发布</a>
+      <% }else{ %>
+      <a href="login.html">登录</a>=============<a href="signup.html">注册</a>
+      <% } %>
+
+
+      <hr>
+      <% for(section in sections){%>
+      ${section.sid}|<a href="section-${section.sid}.html">${section.name}</a>|${section.title}<br>
+      <% }%>
+    </div>
+  </body>
+</html>

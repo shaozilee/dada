@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/login.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div class="login-box">
+      <div class="title">
+        欢迎登陆
+      </div>
+      <form action='dologin.do' id="j-login">
+        <div class="row">
+          <input type="text" name="name" placeholder="请输入邮箱*">
+        </div>
+        <div class="row">
+          <input type="password" name="password" placeholder="请输入密码*">
+        </div>
+        <div class="row">
+          <input type="button" class="btn login-btn" value="登录">
+        </div>
+      </form>
+
+    </div>
+
+    </div>
+
+    <% include("_commonjs.btl"){} %>
+    <script type="text/javascript" src="${ctxPath}/${theme}/js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div>
+    注册：
+      <hr/>
+      <form action="${ctxPath}/dosignup.do" method="post">
+      name:<input type="text" name="name"><br>
+      password:<input type="text" name="password"><br>
+      email:<input type="text" name="email"><br>
+      tel:<input type="text" name="tel"><br>
+      <input type="submit" title="提交">
+      </form>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,148 @@
+.section-notice{
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1px solid #ebebeb;
+  background: #fbfbfb;
+}
+
+.section-notice .content{
+  white-space: normal;
+  line-height: 24px;
+  overflow: hidden;
+  max-height: 300px;
+}
+
+
+
+.section-list{
+  margin-top: 20px;
+}
+
+.section-list>.section{
+  float: left;
+  width: 300px;
+  margin-right: 30px;
+}
+
+.section-list>.section>.icon{
+  float: left;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.section-list>.section>.info{
+  margin-left: 90px;
+}
+
+.section-list>.section>.info>.name{
+  display: block;
+}
+
+
+.post-list{
+  margin-top: 20px;
+}
+.post-list > .ctrl{
+
+}
+.post-list > .list-head{
+  margin-top: 4px;
+  border-top: 1px #e6e6e6 solid;
+  background: #f6f6f6;
+}
+.post-list > .list-head > .col{
+  float: left;
+  line-height: 36px;
+  color: #c60;
+  font-size: 14px;
+  font-weight: 700;
+}
+.post-list > .list-head > .col1{
+  padding-left: 30px;
+  width: 570px;
+}
+.post-list > .list-head > .col2{
+  width: 150px;
+}
+.post-list > .list-head > .col3{
+  width: 125px;
+}
+.post-list > .list-head > .col4{
+  width: 125px;
+}
+
+.post-list > .list-body{
+}
+.post-list > .list-body > .row{
+  border-bottom: 1px #e6e6e6 dashed;
+  padding: 5px 0;
+}
+.post-list > .list-body > .row > .col{
+  float: left;
+  line-height: 20px;
+}
+.post-list > .list-body > .row > .col1{
+  width: 600px;
+  line-height: 40px;
+  text-indent: 10px;
+}
+.post-list > .list-body > .row > .col2{
+  width: 150px;
+}
+.post-list > .list-body > .row > .col3{
+  width: 125px;
+}
+.post-list > .list-body > .row > .col4{
+  width: 125px;
+}
+
+.post-list > .list-body > .row > .col1 >.subject{
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.page-bar{
+  text-align: center;
+  line-height: 40px;
+}
+.page-bar .page{
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border:1px #eee solid;
+  margin-left: -1px;
+  color: #333;
+}
+.page-bar .page:hover,.page-bar .page.active{
+  background-color: #FC0;
+  color:#FFF;
+  text-decoration: none;
+}
+.page-bar .page.active{
+  border-color: #FC0;
+}
+
+.page-bar .page.pre{
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  overflow: hidden;
+  margin-left: 0px;
+}
+.page-bar .page.next{
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+}
+
+.page-bar .disable{
+  background: #EEE;
+}
+.page-bar .disable:hover{
+  background-color: #EEE;
+  color:#333;
+  text-decoration: none;
+}
+
+
+

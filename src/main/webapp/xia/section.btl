@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/top.css">
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/section.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div class="container">
+
+      <div class="top-box clearfix">
+        <ul class="nav-box">
+          <li>当前您在：</li>
+          <li><a href="${ctxPath}/index.html">首页</a> <span class="divider">/</span></li>
+          <li class="active">论坛</li>
+        </ul>
+
+        <ul class="count-box">
+          <li style="border-right: none;">
+            <div class="title">今日</div>
+            <div class="num">1111</div>
+          </li>
+          <li>
+            <div class="title">帖子</div>
+            <div class="num">12312343</div>
+          </li>
+          <li>
+            <div class="title">会员</div>
+            <div class="num">13324</div>
+          </li>
+
+
+        </ul>
+
+      </div>
+
+      <div class="section-notice">
+        <div class="content">
+          ${section.name}版主：<br>
+          ${section.notice}
+        </div>
+      </div>
+
+      <div class="section-list clearfix" style='display: ${ sections.~size>0?"block":"none" }'>
+        <% for(section in sections){%>
+        <div class="section">
+          <div class="icon">
+            <img src="http://static.8264.com/common/ico_82x82/huwaidating.jpg">
+            <!--
+            <img src="${ctxPath}/${section.img}">-->
+          </div>
+          <div class="info">
+            <a class="name" href="section-${section.sid}.html">
+              ${section.name}
+            </a>
+          </div>
+        </div>
+        <% }%>
+      </div>
+
+      <div class="post-list">
+        <div class="ctrl">
+          <a class="btn new-btn" href="post/new.html?sid=${section.sid}" target="_blank">发新帖</a>
+        </div>
+
+        <div class="list-head clearfix">
+          <div class="col col1">帖子标题</div>
+          <div class="col col2">作者/发布时间</div>
+          <div class="col col3">回复/查看</div>
+          <div class="col col4">最后回复</div>
+        </div>
+
+        <div class="list-body">
+          <% for(post in posts){%>
+          <div class="row clearfix">
+            <div class="col col1"><a href="post-${post.pid}-1.html" class="subject">${post.subject}</a></div>
+            <div class="col col2"><a href="#">${post.uid}</a><br>${post.dateline}</div>
+            <div class="col col3">280<br>345</div>
+            <div class="col col4">是发达是<br>12小时前</div>
+          </div>
+          <% }%>
+        </div>
+        <div class="page-bar">
+          <a class='page pre ${pageHasPre?"":"disable"}' ${ pageHasPre?("href=section-"+section.sid+"-"+pagePre+".html"):""}>上一页</a>
+          <% for(var i=start;i<=end;i++){%>
+          <a class='page ${i == page?"active":""}' href="section-${section.sid}-${i}.html">${i}</a>
+          <% }%>
+          <a class='page next ${pageHasNext?"":"disable"}' ${ pageHasNext?("href=section-"+section.sid+"-"+pageNext+".html"):""}>下一页</a>
+        </div>
+      </div>
+
+
+    </div>
+
+    <% include("_commonjs.btl"){} %>
+
+  </body>
+</html>

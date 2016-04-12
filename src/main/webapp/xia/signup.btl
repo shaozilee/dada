@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/signup.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div class="container">
+      <div class="reg-box">
+        <div class="title">
+          注册“叫你起床”账号
+        </div>
+        <form action="${ctxPath}/dosignup.do" method="post">
+          <div class="row">
+            <input type="text" name="email" placeholder="请输入邮箱*">
+          </div>
+          <div class="row">
+            <input type="password" name="password" placeholder="请输入密码*">
+          </div>
+          <div class="row">
+            <input type="text" name="name" placeholder="请输入昵称*">
+          </div>
+          <div class="row">
+            <input type="text" name="tel" placeholder="请输入大陆手机号">
+          </div>
+          <div class="row">
+            <input type="submit" class="btn" title="提交">
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>

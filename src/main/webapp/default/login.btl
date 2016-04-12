@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div>
+      登录：
+      <hr/>
+      <form action="dologin.do" method="post">
+        name: <input type="text" name="name"/><br/>
+        password: <input type="password" name="password"/><br/>
+        <input type="submit" title="登录">
+      </form>
+    </div>
+
+  </body>
+</html>

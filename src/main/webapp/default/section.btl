@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div>
+      <% for(section in sections){%>
+      ${section.sid}|<a href="section-${section.sid}.html">${section.name}</a>|${section.title}<br>
+      <% }%>
+    </div>
+
+    <div>
+      <% for(post in posts){%>
+      ${post.pid}|<a href="post-${post.pid}.html">${post.subject}</a>|${post.dateline}<br>
+      <% }%>
+    </div>
+  </body>
+</html>

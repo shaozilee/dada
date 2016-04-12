@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <!-- SpringMVC的dispatcher -->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath*:dispatcher-context.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- 映射所有的.html页面 -->
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <!-- 映射所有的.do异步ajax请求 -->
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- 针对异步ajax请求的response设置响应页面contentType编码设置 -->
+  <filter>
+    <filter-name>ajaxFilter</filter-name>
+    <filter-class>com.shaozilee.dada.utils.AjaxFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ajaxFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>sessionFilter</filter-name>
+    <filter-class>com.shaozilee.dada.utils.SessionFilter</filter-class>
+    <init-param>
+      <param-name>include</param-name>
+      <param-value>^/post/.*;</param-value>
+    </init-param>
+    <init-param>
+      <param-name>exclude</param-name>
+      <param-value>/post/new.html</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>sessionFilter</filter-name>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>sessionFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+
+
+
+  <!-- 前后端分离 模板单独显示测试过滤器 -->
+  <filter>
+    <filter-name>templateFilter</filter-name>
+    <filter-class>com.shaozilee.dada.utils.TestTemplateFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>templateFilter</filter-name>
+    <url-pattern>*.btl</url-pattern>
+  </filter-mapping>
+
+
+
+
+  <!-- 数据库连接池数据源启动监听器 -->
+  <listener>
+    <listener-class>com.shaozilee.dada.utils.DataSourceListener</listener-class>
+  </listener>
+
+  <!-- 404状态码页面 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+
+</web-app>

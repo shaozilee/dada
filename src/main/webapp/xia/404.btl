@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy API Platform</title>
+    <% include("_common.btl"){} %>
+  </head>
+  <body>
+    <% include("_header.btl"){} %>
+    <div style="padding-top:40px;text-align:center;">
+         <img src="${ctxPath}/${theme}/images/404.jpg">
+    </div>
+  </body>
+</html>
