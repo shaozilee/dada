@@ -1,4 +1,2 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-<link rel="stylesheet" href="${ctxPath}/${theme}/css/bootstrap.min.css">
-<link rel="stylesheet" href="${ctxPath}/${theme}/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="${ctxPath}/${theme}/css/common.css">

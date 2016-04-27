@@ -1,5 +1,7 @@
 package com.shaozilee.dada.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.servlet.Filter;
@@ -19,6 +21,7 @@ import java.util.regex.Pattern;
  * Created by lee on 15-12-6.
  */
 public class SessionFilter implements Filter {
+    public static Logger logger = LogManager.getLogger(SessionFilter.class);
     private Pattern[] include = null;
     private Pattern[] exclude = null;
 
@@ -51,12 +54,12 @@ public class SessionFilter implements Filter {
 
         String ctxPath = request.getContextPath();
         String url = request.getServletPath();
-        System.out.println("url:"+url);
+        logger.debug("url:"+url);
 
         if(exclude != null){
             for(int i=0;i<exclude.length;i++){
                 if(exclude[i].matcher(url).find()){
-                    System.out.println("find exclude:"+url);
+                    logger.debug("find exclude:"+url);
                     filterChain.doFilter(request,response);
                     return;
                 }
@@ -67,7 +70,7 @@ public class SessionFilter implements Filter {
             for(int i=0;i<include.length;i++){
                 if(include[i].matcher(url).find()){
                     if(request.getSession().getAttribute("user") == null){
-                        System.out.println("find include:"+url);
+                        logger.debug("find include:"+url);
                         Pattern pattern = Pattern.compile(".*\\.do(\\?)?.*");
                         if(pattern.matcher(url).find()){
                             Map result = new HashMap();

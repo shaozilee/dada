@@ -1,9 +1,1 @@
 <link rel="stylesheet" href="${ctxPath}/${theme}/css/header.css">
-<div class="header clearfix">
-	<div class="bar">
-		<a class="logo" href="${ctxPath}/index.html">Easy API Platform</a>
-		<div class="search-box">
-			<input type="text"><a class="btn btn-primary" style="padding-top:5px;padding-bottom:5px;">搜索</a>
-		</div>
-	</div>
-</div>
