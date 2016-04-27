@@ -16,7 +16,7 @@
     <property name="sharedVars">
       <map>
         <!--定义系统模板主题-->
-        <entry key="theme" value="xia"></entry>
+        <entry key="theme" value="default"></entry>
       </map>
     </property>
   </bean>
