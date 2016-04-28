@@ -1,5 +1,6 @@
 package com.shaozilee.dada.controller;
 
+import com.shaozilee.dada.dao.TopicDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,11 @@ public class IndexController extends AbstractController{
      */
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
-//        List list = SectionDao.getInstance().getTopSections();
-//        model.addAttribute("sections",list);
+        //TODO 获取主题统计数据
+
+        //获取第一页主题数据
+        List topicList = TopicDao.getInstance().getTopics(1,10);
+        model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
 }
