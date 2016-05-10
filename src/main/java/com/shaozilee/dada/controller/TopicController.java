@@ -1,11 +1,18 @@
 package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.TopicDao;
+import com.shaozilee.dada.pojo.Member;
+import com.shaozilee.dada.pojo.Topic;
+import com.shaozilee.dada.utils.AjaxCode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -14,6 +21,7 @@ import java.util.List;
 
 @Controller
 public class TopicController extends AbstractController{
+    private static Logger logger = LogManager.getLogger(TopicController.class);
 
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
@@ -24,4 +32,19 @@ public class TopicController extends AbstractController{
         model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
+
+    @RequestMapping("/new")
+    public String newTopic(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
+        return api?debugAPI(model):"new";
+    }
+
+    @RequestMapping("/doPost")
+    public void doPost(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        String jsonStr = toJson(AjaxCode.SUC, response);
+        logger.debug(jsonStr);
+    }
+
+
+
+
 }
