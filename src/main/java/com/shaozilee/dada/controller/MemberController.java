@@ -21,14 +21,23 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberController extends AbstractController{
     public static Logger logger = LogManager.getLogger(MemberController.class);
 
-    /**
-     * 登录服务
-     * @param model
-     * @return
-     */
     @RequestMapping("/doLogin")
     public void doLogin(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }
+
+    @RequestMapping("/regist")
+    public String regist(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        return "regist";
+    }
+
+    @RequestMapping("/doRegist")
+    public void doRegist(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        String jsonStr = toJson(AjaxCode.SUC, response);
+        logger.debug(jsonStr);
+    }
+
+
+
 }

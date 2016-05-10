@@ -13,13 +13,8 @@ import java.util.List;
  */
 
 @Controller
-public class IndexController extends AbstractController{
+public class TopicController extends AbstractController{
 
-    /**
-     * 首页
-     * @param model
-     * @return
-     */
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
         //TODO 获取主题统计数据
