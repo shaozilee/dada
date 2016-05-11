@@ -17,7 +17,7 @@ public class ErrorController {
      * @return
      */
     @RequestMapping("/404")
-    public String index(Model model) {
+    public String error(Model model) {
         return "404";
     }
 }

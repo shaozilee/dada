@@ -28,18 +28,27 @@ public class TopicController extends AbstractController{
         //TODO 获取主题统计数据
 
         //获取第一页主题数据
-        List topicList = TopicDao.getInstance().getTopics(1,10);
-        model.addAttribute("topicList",topicList);
+//        List topicList = TopicDao.getInstance().getTopics(1,10);
+//        model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
 
-    @RequestMapping("/new")
-    public String newTopic(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
-        return api?debugAPI(model):"new";
+    @RequestMapping("/topic/new")
+    public String newTopic(Model model) throws Exception{
+        return "new";
     }
 
-    @RequestMapping("/doPost")
-    public void doPost(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    @RequestMapping("/topic/save")
+    public void saveTopic(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+
+
+
+        String jsonStr = toJson(AjaxCode.SUC, response);
+        logger.debug(jsonStr);
+    }
+
+    @RequestMapping("/post/save")
+    public void savePost(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }

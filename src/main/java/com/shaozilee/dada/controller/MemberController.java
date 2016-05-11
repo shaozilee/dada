@@ -22,13 +22,13 @@ public class MemberController extends AbstractController{
     public static Logger logger = LogManager.getLogger(MemberController.class);
 
     @RequestMapping("/doLogin")
-    public void doLogin(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doLogin(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }
 
     @RequestMapping("/regist")
-    public String regist(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public String regist() throws Exception{
         return "regist";
     }
 

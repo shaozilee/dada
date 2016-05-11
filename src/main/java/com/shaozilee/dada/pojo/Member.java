@@ -1,9 +1,11 @@
 package com.shaozilee.dada.pojo;
 
+import java.util.HashMap;
+
 /**
  * Created by lee on 16-4-27.
  */
-public class Member {
+public class Member extends HashMap{
     public Integer uid;
     public String username;
     public String password;

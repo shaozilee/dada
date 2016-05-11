@@ -25,7 +25,6 @@ public class SessionFilter implements Filter {
     private Pattern[] include = null;
     private Pattern[] exclude = null;
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String includeStr = filterConfig.getInitParameter("include");
         String excludeStr = filterConfig.getInitParameter("exclude");
@@ -46,7 +45,6 @@ public class SessionFilter implements Filter {
 
     }
 
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
@@ -94,7 +92,6 @@ public class SessionFilter implements Filter {
 
     }
 
-    @Override
     public void destroy() {
 
     }

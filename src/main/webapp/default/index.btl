@@ -9,6 +9,7 @@
     <% include("_header.btl"){} %>
     <div>
       hello world111
+        <a href="topic/new.html">发布新帖</a>
     </div>
     <% include("_footer.btl"){} %>
     <% include("_commonjs.btl"){} %>

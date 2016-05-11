@@ -19,7 +19,6 @@ public class TestTemplateFilter extends SimpleCrossFilter{
         return ServletGroupTemplate.instance().getGroupTemplate();
     }
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }

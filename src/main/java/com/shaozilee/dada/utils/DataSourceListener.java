@@ -12,13 +12,11 @@ import javax.servlet.ServletContextListener;
 public class DataSourceListener implements ServletContextListener {
     private Logger logger = LogManager.getLogger(DataSourceListener.class);
 
-    @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         logger.debug("###################init DBCP#####################");
         DS.init();
     }
 
-    @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         logger.debug("###################destory DBCP##################");
         DS.destory();
