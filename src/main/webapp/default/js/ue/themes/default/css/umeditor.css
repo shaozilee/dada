@@ -31,9 +31,8 @@
     overflow:auto;
     display:block;
     word-wrap:break-word;
-    font-size:14px;
+    font-size:16px;
     font-family:sans-serif;
-    line-height: 26px;
 }
 .edui-editor-body.focus{border:1px solid #5c9dff}
 .edui-editor-body table{margin:10px 0 10px;border-collapse:collapse;display:table;}

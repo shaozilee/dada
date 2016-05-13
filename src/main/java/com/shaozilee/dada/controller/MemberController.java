@@ -39,5 +39,13 @@ public class MemberController extends AbstractController{
     }
 
 
+    @RequestMapping("/doConfig")
+    public void doConfig(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        String jsonStr = toJson(AjaxCode.SUC, response);
+        logger.debug(jsonStr);
+    }
+
+
+
 
 }
