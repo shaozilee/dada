@@ -1,1 +1,7 @@
 <script type="text/javascript" src="${ctxPath}/${theme}/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    window.DA={
+        ROOT:"${ctxPath}",
+        THEME:"${theme}"
+    };
+</script>
