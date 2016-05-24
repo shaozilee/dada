@@ -23,8 +23,8 @@ import java.util.HashMap;
 public class AttachmentController extends AbstractController{
     public static Logger logger = LogManager.getLogger(AttachmentController.class);
 
-    @RequestMapping("/doUpload")
-    public void doUpload(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    @RequestMapping("/doUploadImage")
+    public void doUploadImage(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String savePath = Config.get("attachment.path");
         Uploader up = new Uploader(request);
         up.setSavePath(savePath);
