@@ -26,48 +26,19 @@ USE `dada` ;
 DROP TABLE IF EXISTS `dada`.`common_member` ;
 
 CREATE TABLE IF NOT EXISTS `dada`.`common_member` (
-  `uid` MEDIUMINT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` CHAR(15) NOT NULL,
+  `uid` INT  NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(15) NOT NULL,
   `password` CHAR(32) NOT NULL,
   `email` CHAR(40),
-  `status` TINYINT(1) NOT NULL DEFAULT '0',
-  `emailstatus` TINYINT(1) NOT NULL DEFAULT '0',
-  `regdate` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `credits` INT(10) NOT NULL DEFAULT '0',
-  `lastloginip` INT(10) NOT NULL DEFAULT '0',
-  `lastlogintime` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `status` BIT NOT NULL DEFAULT 0,
+  `email_status` BIT NOT NULL DEFAULT 0,
+  `reg_date` BIGINT  NOT NULL DEFAULT 0,
+  `credits` INT NOT NULL DEFAULT 0,
+  `last_login_ip` INT NOT NULL DEFAULT 0,
+  `last_login_time` BIGINT  NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `dada`.`forum_attachment`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `dada`.`forum_attachment` ;
-
-CREATE TABLE IF NOT EXISTS `dada`.`forum_attachment` (
-  `aid` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-  `pid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `width` SMALLINT(6) UNSIGNED NOT NULL DEFAULT '0',
-  `dateline` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `readperm` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
-  `price` SMALLINT(6) UNSIGNED NOT NULL DEFAULT '0',
-  `filename` CHAR(100) NOT NULL,
-  `filetype` CHAR(50) NOT NULL,
-  `filesize` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `attachment` CHAR(100) NOT NULL,
-  `downloads` CHAR(100) NOT NULL DEFAULT '0',
-  `isimage` TINYINT(1) NOT NULL,
-  `uid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-  `thumb` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-  `remote` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-  `picid` MEDIUMINT(8) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`aid`))
-ENGINE = MyISAM
-DEFAULT CHARACTER SET = utf8;
-
 
 -- -----------------------------------------------------
 -- Table `dada`.`forum_post`
@@ -75,19 +46,18 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `dada`.`forum_post` ;
 
 CREATE TABLE IF NOT EXISTS `dada`.`forum_post` (
-  `pid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-  `author` VARCHAR(15) NOT NULL,
-  `authorid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
+  `pid` INT NOT NULL AUTO_INCREMENT,
+  `tid` INT NOT NULL DEFAULT 0,
+  `author_name` VARCHAR(15) NOT NULL,
+  `author_id` INT NOT NULL DEFAULT 0,
   `subject` VARCHAR(80) NOT NULL,
-  `dateline` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `date_line` BIGINT NOT NULL DEFAULT 0,
   `message` MEDIUMTEXT NOT NULL,
-  `useip` VARCHAR(15) NOT NULL,
-  `invisible` TINYINT(1) NOT NULL DEFAULT '0',
-  `anonymous` TINYINT(1) NOT NULL DEFAULT '0',
-  `attachment` TINYINT(1) NOT NULL DEFAULT '0',
-  `status` TINYINT(1) NOT NULL DEFAULT '0',
-  `tags` VARCHAR(255) NOT NULL DEFAULT '0',
+  `useIp` VARCHAR(15) NOT NULL DEFAULT 0,
+  `invisible` BIT NOT NULL DEFAULT 0,
+  `anonymous` BIT NOT NULL DEFAULT 0,
+  `status` BIT NOT NULL DEFAULT 0,
+  `tags` VARCHAR(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`pid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;
@@ -99,28 +69,26 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `dada`.`forum_topic` ;
 
 CREATE TABLE IF NOT EXISTS `dada`.`forum_topic` (
-  `tid` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `readperm` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
-  `author` CHAR(15) NOT NULL,
-  `authorid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
+  `tid` INT  NOT NULL AUTO_INCREMENT,
+  `read_perm` INT  NOT NULL DEFAULT 0,
+  `author_name` CHAR(15) NOT NULL,
+  `author_id` INT  NOT NULL DEFAULT 0,
   `subject` CHAR(80) NOT NULL,
-  `dateline` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `lastpost` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `lastposter` CHAR(15) NOT NULL,
-  `views` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `replies` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-  `displayorder` TINYINT(1) NOT NULL DEFAULT '0',
-  `highlight` TINYINT(1) NOT NULL DEFAULT '0',
-  `digest` TINYINT(1) NOT NULL DEFAULT '0',
-  `attachment` TINYINT(1) NOT NULL DEFAULT '0',
-  `closed` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-  `stickreply` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-  `status` SMALLINT(6) UNSIGNED NOT NULL DEFAULT '0',
-  `favtimes` MEDIUMINT(8) NOT NULL DEFAULT '0',
-  `sharetimes` MEDIUMINT(8) NOT NULL DEFAULT '0',
-  `stamp` TINYINT(3) NOT NULL DEFAULT '-1',
-  `icon` TINYINT(3) NOT NULL DEFAULT '-1',
-  `pushedaid` MEDIUMINT(8) NOT NULL DEFAULT '0',
+  `date_line` BIGINT  NOT NULL DEFAULT 0,
+  `last_post` BIGINT  NOT NULL DEFAULT 0,
+  `last_poster` CHAR(15) NOT NULL,
+  `views` INT NOT NULL DEFAULT 0,
+  `replies` INT  NOT NULL DEFAULT 0,
+  `display_order` INT NOT NULL DEFAULT 0,
+  `high_light` BIT NOT NULL DEFAULT 0,
+  `digest` BIT NOT NULL DEFAULT 0,
+  `closed` INT  NOT NULL DEFAULT 0,
+  `stick_reply` BIT  NOT NULL DEFAULT 0,
+  `status` INT  NOT NULL DEFAULT 0,
+  `fav_times` INT NOT NULL DEFAULT 0,
+  `share_times` INT NOT NULL DEFAULT 0,
+  `stamp` INT NOT NULL DEFAULT -1,
+  `icon` INT NOT NULL DEFAULT -1,
   PRIMARY KEY (`tid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;

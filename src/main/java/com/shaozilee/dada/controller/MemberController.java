@@ -1,10 +1,9 @@
 package com.shaozilee.dada.controller;
 
-import com.shaozilee.dada.pojo.Member;
+import com.shaozilee.dada.pojo.CommonMember;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +32,7 @@ public class MemberController extends AbstractController{
     }
 
     @RequestMapping("/doRegist")
-    public void doRegist(Member mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doRegist(CommonMember mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }

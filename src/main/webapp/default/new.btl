@@ -3,7 +3,7 @@
   <head>
     <title>Easy API Platform</title>
     <% include("_common.btl"){} %>
-    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/new.css">
 
   </head>
   <body>
@@ -21,7 +21,7 @@
         </script>
 
         <div>
-            <button>提交发布</button>
+            <button class="post-btn">提交发布</button>
         </div>
     </div>
     <% include("_commonjs.btl"){} %>

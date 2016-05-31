@@ -5766,7 +5766,7 @@ UM.commands['insertimage'] = {
         var html = [], str = '', ci;
         ci = opt[0];
         if (opt.length == 1) {
-            str = '<img src="' + ci.src + '" ' + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+            str = '<img class="um-img" src="' + ci.src + '" ' + (ci._src ? ' _src="' + ci._src + '" ' : '') +
                 (ci.width ? 'width="' + ci.width + '" ' : '') +
                 (ci.height ? ' height="' + ci.height + '" ' : '') +
                 (ci['floatStyle'] == 'left' || ci['floatStyle'] == 'right' ? ' style="float:' + ci['floatStyle'] + ';"' : '') +
@@ -5782,7 +5782,7 @@ UM.commands['insertimage'] = {
 
         } else {
             for (var i = 0; ci = opt[i++];) {
-                str = '<p ' + (ci['floatStyle'] == 'center' ? 'style="text-align: center" ' : '') + '><img src="' + ci.src + '" ' +
+                str = '<p ' + (ci['floatStyle'] == 'center' ? 'style="text-align: center" ' : '') + '><img class="um-img" src="' + ci.src + '" ' +
                     (ci.width ? 'width="' + ci.width + '" ' : '') + (ci._src ? ' _src="' + ci._src + '" ' : '') +
                     (ci.height ? ' height="' + ci.height + '" ' : '') +
                     ' style="' + (ci['floatStyle'] && ci['floatStyle'] != 'center' ? 'float:' + ci['floatStyle'] + ';' : '') +

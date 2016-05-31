@@ -1,6 +1,6 @@
 package com.shaozilee.dada.dao;
 
-import com.shaozilee.dada.pojo.Topic;
+import com.shaozilee.dada.pojo.ForumTopic;
 import com.shaozilee.dada.utils.DS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,27 @@ public class TopicDao {
         }
         con.close();
         return list;
+    }
+
+
+    public ForumTopic add(ForumTopic topic) throws SQLException {
+        Connection con = DS.getConnection();
+        String sql = "INSERT INTO forum_topic(author_name,author_id,subject,date_line,last_post,last_poster) VALUES (?,?,?,?,?,?)";
+        PreparedStatement ps = con.prepareStatement(sql,new String[]{"tid"});
+        ps.setString(1,topic.getAuthorName());
+        ps.setInt(2,topic.getAuthorId());
+        ps.setString(3,topic.getSubject());
+        ps.setLong(4,topic.getDateLine());
+        ps.setLong(5,topic.getLastPost());
+        ps.setString(6,topic.getLastPoster());
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        if(rs!=null && rs.next())
+        {
+            topic.setTid(rs.getInt(1));
+        }
+        con.close();
+        return topic;
     }
 
 
