@@ -44,6 +44,12 @@ public class PostDao {
         return post;
     }
 
+    public List getPostsByTid(Integer tid,Integer page) throws SQLException{
+        Connection con = DS.getConnection();
+        String sql = "SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post WHERE tid=?";
+        PreparedStatement ps = con.prepareStatement(sql,new String[]{"pid"});
+        return null;
+    }
 
 
 }
