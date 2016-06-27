@@ -42,12 +42,12 @@ public class TopicController extends AbstractController{
         return "new";
     }
 
-    @RequestMapping("/topic/{tid}-{page}")
-    public String topic(@PathVariable Integer tid, @PathVariable Integer page,Model model) throws Exception{
+    @RequestMapping("/topic-{tid}-{page}")
+    public String topic(@PathVariable Integer tid, @PathVariable Integer page, @RequestParam(value="api", required=false, defaultValue="false") boolean api,Model model) throws Exception{
         PostDao postDao = PostDao.getInstance();
         List list = postDao.getPostsByTid(tid, page);
-
-        return "topic";
+        model.addAttribute("postList",list);
+        return api?debugAPI(model):"topic";
     }
 
     @RequestMapping("/topic/save")
@@ -79,7 +79,17 @@ public class TopicController extends AbstractController{
     }
 
     @RequestMapping("/post/save")
-    public void savePost(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void savePost(ForumPost f,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        Long time = new Date().getTime();
+
+        PostDao postDao = PostDao.getInstance();
+        f.setDateLine(time);
+        f.setAuthorId(0);
+        f.setAuthorName("lishg");
+        f.setTid(f.getTid());
+        postDao.add(f);
+
+
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }

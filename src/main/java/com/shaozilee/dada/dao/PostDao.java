@@ -1,6 +1,7 @@
 package com.shaozilee.dada.dao;
 
 import com.shaozilee.dada.pojo.ForumPost;
+import com.shaozilee.dada.utils.BeanUtil;
 import com.shaozilee.dada.utils.DS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,10 +47,18 @@ public class PostDao {
     }
 
     public List getPostsByTid(Integer tid,Integer page) throws SQLException{
+        List list = new ArrayList();
         Connection con = DS.getConnection();
         String sql = "SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post WHERE tid=?";
-        PreparedStatement ps = con.prepareStatement(sql,new String[]{"pid"});
-        return null;
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1,tid);
+        ResultSet resultSet = ps.executeQuery();
+        while(resultSet.next()){
+            list.add(BeanUtil.getBean(resultSet));
+        }
+        con.close();
+        return list;
     }
 
 

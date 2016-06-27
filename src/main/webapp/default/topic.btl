@@ -8,51 +8,28 @@
   <body>
     <% include("_header.btl"){} %>
     <div>
-      this post uid: ${ post.uid }<br>
-      this post sid: ${ post.sid }<br>
-      this post id: ${ post.pid }<br>
-      this post subject: ${ post.subject }<br>
-      this post message: ${ post.message }<br>
-      this post dateline: ${ post.dateline }<br>
-      <a href="#reply-box" class="reply-btn">回复</a>
-      <hr>
+        ${postList}
 
-      <% for(comment in comments){ %>
-        comment-rcid: ${ comment.rcid }<br>
-        comment-cid: ${ comment.cid }<br>
-        comment-uid: ${ comment.uid }<br>
-        comment-message: ${ comment.message }<br>
-        comment-dateline: ${ comment.dateline }<br>
-        <a href="#reply-box" class="reply-btn" data-cid="${ comment.cid }">回复</a>
-      <hr>
-      <% }%>
+        <div>
+            回复：<input type="text" id="replyText"><button id="replyBtn">提交</button>
 
-
-      <div id="reply-box" style='display: ${ session.user != null?"block":"none"}'>
-        <form id="commentForm" action="${ctxPath}/comment/add.do" method="post">
-          <input type="hidden" name="pid" value="${ post.pid}">
-          <input type="hidden" name="rcid">
-          <input type="text" name="message"/>
-          <input type="submit" title="回复">
-        </form>
-      </div>
-
-
-
+        </div>
     </div>
 
     <% include("_commonjs.btl"){} %>
 
     <script type="text/javascript">
-      $(".reply-btn").click(function(){
-        var cid = $(this).data("cid");
-        if(cid){
-          $("#commentForm>input[name='rcid']").val(cid);
-        }else{
-          $("#commentForm>input[name='rcid']").val("");
-        }
-      });
 
+        $("#replyBtn").click(function(){
+            var param = {
+                pid:$(this).data("pid"),
+                message: $("#replyText").val()
+            };
+
+            $.post(DA.ROOT+"/post/save.do", param, function (data) {
+                console.log(data);
+            });
+        });
 
     </script>
 
