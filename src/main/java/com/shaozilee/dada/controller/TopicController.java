@@ -37,11 +37,6 @@ public class TopicController extends AbstractController{
         return api?debugAPI(model):"index";
     }
 
-    @RequestMapping("/topic/new")
-    public String newTopic(Model model) throws Exception{
-        return "new";
-    }
-
     @RequestMapping("/topic-{tid}-{page}")
     public String topic(@PathVariable Integer tid, @PathVariable Integer page, @RequestParam(value="api", required=false, defaultValue="false") boolean api,Model model) throws Exception{
         PostDao postDao = PostDao.getInstance();
@@ -92,6 +87,11 @@ public class TopicController extends AbstractController{
 
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
+    }
+
+    @RequestMapping("/topic/new")
+    public String newTopic(Model model) throws Exception{
+        return "new";
     }
 
 
