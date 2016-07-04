@@ -1,0 +1,116 @@
+.topic-box{
+  width: 100%;
+}
+
+.topic-list{
+
+}
+
+.topic-list li{
+  margin-bottom: 20px;
+  background: #f3f3f3;
+  padding: 10px 20px;
+}
+
+.topic-list .subject{
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+}
+.topic-list .subject a{
+  display: inline-block;
+  width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  _zoom: 1;
+  color: #333;
+  font-size: 16px;
+}
+
+.topic-list .subject a:hover{
+  color: #ff8b3d;
+}
+
+.topic-list .other{
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.page-bar{
+  text-align: center;
+}
+
+.page-bar li{
+  display: inline-block;
+  position: relative;
+  padding-top: 16px;
+}
+
+.page-bar a{
+  display: inline-block;
+  line-height: 28px;
+  min-width: 28px;
+  color: #333;
+  border: 1px solid #dfdfdf;
+  text-decoration: none;
+}
+
+.page-bar a:hover{
+  border-color: #ff8b3d;
+  background: #ff8b3d;
+  color: #fff;
+}
+
+.page-bar .selected a{
+  border-color: #ff8b3d;
+  background: #FFF;
+  color: #ff8b3d;
+}
+
+.page-bar .first a,.page-bar .last a,.page-bar .pre a,.page-bar .next a{
+  padding: 0px 10px;
+}
+
+.page-bar .disable a{
+  border: 1px solid #dfdfdf;
+  background: #ccc;
+  color: #333;
+}
+
+.top-bar{
+  margin-bottom: 20px;
+}
+
+.top-left{
+  float: left;
+}
+
+.top-left li{
+  float: left;
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  color: #333;
+  margin-right: 30px;
+}
+
+
+.top-right{
+  float: right;
+  width: 140px;
+}
+
+.top-right .btn-new{
+  display: block;
+  height: 36px;
+  background-color: #ff9d00;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  line-height: 36px;
+  font-size: 16px;
+}

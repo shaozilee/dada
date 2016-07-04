@@ -25,15 +25,38 @@ import java.util.List;
 @Controller
 public class TopicController extends AbstractController{
     private static Logger logger = LogManager.getLogger(TopicController.class);
-
+    private static Integer PAGE_SIZE = 2;
 
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
-        //TODO 获取主题统计数据
+        Integer page = 1;
+        Integer totalCount = TopicDao.getInstance().getTotalCount();
+        Integer totalPage = Math.round((float)totalCount/PAGE_SIZE);
+        model.addAttribute("totalCount",totalCount);
+        model.addAttribute("totalPage",totalPage);
+        model.addAttribute("hasPre",page>1?true:false);
+        model.addAttribute("hasNext",page<totalPage?true:false);
+        model.addAttribute("currentPage",page);
 
         //获取第一页主题数据
-//        List topicList = TopicDao.getInstance().getTopics(1,10);
-//        model.addAttribute("topicList",topicList);
+        List topicList = TopicDao.getInstance().getTopics(1,PAGE_SIZE);
+        model.addAttribute("topicList",topicList);
+        return api?debugAPI(model):"index";
+    }
+
+    @RequestMapping("/index-{page}")
+    public String indexByPage(@PathVariable Integer page,@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
+        Integer totalCount = TopicDao.getInstance().getTotalCount();
+        Integer totalPage = Math.round((float)totalCount/PAGE_SIZE);
+        model.addAttribute("totalCount",totalCount);
+        model.addAttribute("totalPage",totalPage);
+        model.addAttribute("hasPre",page>1?true:false);
+        model.addAttribute("hasNext",page<totalPage?true:false);
+        model.addAttribute("currentPage",page);
+
+        //获取第一页主题数据
+        List topicList = TopicDao.getInstance().getTopics(page, PAGE_SIZE);
+        model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
 

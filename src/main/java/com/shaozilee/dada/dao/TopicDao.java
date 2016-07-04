@@ -1,6 +1,7 @@
 package com.shaozilee.dada.dao;
 
 import com.shaozilee.dada.pojo.ForumTopic;
+import com.shaozilee.dada.utils.BeanUtil;
 import com.shaozilee.dada.utils.DS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,7 +35,7 @@ public class TopicDao {
         ps.setInt(2,pageSize);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            //list.add(BeanUtil.getBean(rs));
+            list.add(BeanUtil.getBean(rs));
             logger.debug("has data");
         }
         con.close();
@@ -60,6 +61,18 @@ public class TopicDao {
         }
         con.close();
         return topic;
+    }
+
+    public Integer getTotalCount()throws SQLException{
+        Integer totalCount = 0;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT COUNT(tid) FROM forum_topic");
+        ResultSet rs = ps.executeQuery();
+        if(rs != null && rs.next()){
+            totalCount = rs.getInt(1);
+        }
+        con.close();
+        return totalCount;
     }
 
 

@@ -7,12 +7,52 @@
   </head>
   <body>
     <% include("_header.btl"){} %>
-    <div>
+    <div class="page">
+      <div class="page-wrap">
+        <div class="topic-box">
+          <div class="top-bar clearfix">
+            <ul class="top-left">
+              <li>欢迎 <a href="#">登录</a>/<a href="#">注册</a> 光临</li>
+              <li>总帖数:1000</li>
+              <li>今日共:100</li>
+            </ul>
+            <div class="top-right">
+              <a class="btn-new" href="topic/new.html" target="_blank">发布帖子</a>
+            </div>
+          </div>
+          <ul class="topic-list">
+            <% for(topic in topicList){%>
+            <li>
+              <div class="subject">
+                <a href="topic-${topic.tid}-1.html">${topic.subject}</a>
+              </div>
+              <div class="other">
+                ${topic.author_name},${topic.date_line},${topic.views},${topic.replies}
+              </div>
+            </li>
+            <% }%>
+          </ul>
+          <div class="page-bar">
+            <ul>
+              <li class="first"><a href="index.html">首页</a></li>
+              <li class="pre ${hasPre?'':'disable'}"><a href="${hasPre?'index-'+(currentPage-1)+'.html':'javascript:void;'}">&lt;</a></li>
+              <%
+              var start = (currentPage-4)>0?(currentPage-4):1;
+              var end = (start+8)>totalPage?totalPage:(start+8);
+
+              for(var i=start;i<=end;i++){%>
+              <li class="${i==currentPage?'selected':''}"><a href="index-${i}.html">${i}</a></li>
+              <% }%>
+
+              <li class="next ${hasNext?'':'disable'}"><a href="${hasNext?'index-'+(currentPage+1)+'.html':'javascript:void;'}">&gt;</a></li>
+              <li class="last"><a href="index-${totalPage}.html">末页</a></li>
 
 
+            </ul>
+          </div>
 
-      hello world111
-        <a href="topic/new.html">发布新帖</a>
+        </div>
+      </div>
     </div>
     <% include("_footer.btl"){} %>
     <% include("_commonjs.btl"){} %>
