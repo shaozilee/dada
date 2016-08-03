@@ -20,8 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberController extends AbstractController{
     public static Logger logger = LogManager.getLogger(MemberController.class);
 
+    @RequestMapping("/login")
+    public String login(@RequestParam(value="redirect", required=false, defaultValue="") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        model.addAttribute("redirect",redirect);
+        return "login";
+    }
+
     @RequestMapping("/doLogin")
-    public void doLogin(@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doLogin(CommonMember user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        request.getSession().setAttribute("user",user);
+
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }

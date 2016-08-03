@@ -1,0 +1,34 @@
+<div class="footer">
+  <div class="box">
+    <ul class="footer_guide clearfix">
+      <li>
+        <dl>
+          <dt>关于我们</dt>
+          <dd><a href="#" target="_blank" rel="nofollow">社区简介</a></dd>
+          <dd><a href="#" target="_blank" rel="nofollow">联系我们</a></dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt>网站条款</dt>
+          <dd><a href="#" target="_blank" rel="nofollow">会员条款</a></dd>
+          <dd><a href="#" target="_blank" rel="nofollow">免责声明</a></dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt>帮助中心</dt>
+          <dd><a href="#" target="_blank" rel="nofollow">新手上路</a></dd>
+        </dl>
+      </li>
+      <li style="padding-left: 80px;">
+        <img src="${ctxPath}/${theme}/images/logo-bottom.png" alt=""/>
+      </li>
+    </ul>
+  </div>
+  <div class="copyright">
+    2016-2018 © dadania.com All rights reserved。本网站为广大影视爱好者提供观影指南和问答交流平台。
+  </div>
+  <div class="friend-link">
+  </div>
+</div>

@@ -41,18 +41,21 @@ public class PostDao {
         if(rs!=null && rs.next())
         {
             post.setPid(rs.getInt(1));
+            logger.debug("post:"+rs.getInt(1));
         }
         con.close();
         return post;
     }
 
-    public List getPostsByTid(Integer tid,Integer page) throws SQLException{
+    public List getPostsByTid(Integer tid,Integer pageNum,Integer pageSize) throws SQLException{
+        int start = (pageNum-1)*pageSize;
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        String sql = "SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post WHERE tid=?";
+        String sql = "SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
         PreparedStatement ps = con.prepareStatement(sql);
-
         ps.setInt(1,tid);
+        ps.setInt(2,start);
+        ps.setInt(3,pageSize);
         ResultSet resultSet = ps.executeQuery();
         while(resultSet.next()){
             list.add(BeanUtil.getBean(resultSet));

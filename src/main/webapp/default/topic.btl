@@ -3,17 +3,29 @@
   <head>
     <title>Easy API Platform</title>
     <% include("_common.btl"){} %>
-    <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
+    <link rel="stylesheet" href="${ctxPath}/${theme}/css/topic.css">
   </head>
   <body>
     <% include("_header.btl"){} %>
-    <div>
-        ${postList}
+    <div class="page">
+      <div class="page-wrap">
+        <div class="post-title clearfix">
+          <h1>${topic.subject}</h1>
+        </div>
 
-        <div>
-            回复：<input type="text" id="replyText"><button id="replyBtn">提交</button>
+        <ul>
+          <% for(post in postList){%>
+          <li>
+            ${post.message}
+          </li>
+          <% }%>
+        </ul>
+
+        <div class="reply-box">
+          回复：<input type="text" id="replyText"><button id="replyBtn" data-tid="${tid}">提交</button>
 
         </div>
+      </div>
     </div>
 
     <% include("_commonjs.btl"){} %>
@@ -22,7 +34,7 @@
 
         $("#replyBtn").click(function(){
             var param = {
-                pid:$(this).data("pid"),
+                tid:$(this).data("tid"),
                 message: $("#replyText").val()
             };
 

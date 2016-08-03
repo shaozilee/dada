@@ -48,11 +48,11 @@
   </filter>
   <filter-mapping>
     <filter-name>sessionFilter</filter-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.html1</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>sessionFilter</filter-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>*.do1</url-pattern>
   </filter-mapping>
 
 

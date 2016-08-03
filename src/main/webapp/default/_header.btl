@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="${ctxPath}/${theme}/css/header.css">
 <div class="header">
   <div class="header-wrap clearfix">
     <div class="header-logo"><a class="da-logo" href="index.html"></a></div>

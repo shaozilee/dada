@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lee on 15-11-7.
@@ -73,6 +74,19 @@ public class TopicDao {
         }
         con.close();
         return totalCount;
+    }
+
+    public Map getTopicByTid(Integer tid)throws  SQLException{
+        Map topic = null;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT tid,read_perm,author_name,author_id,subject,date_line,last_post,last_poster,views,replies,display_order,high_light,digest,closed,stick_reply,status,fav_times,share_times,stamp,icon FROM forum_topic WHERE tid = ?");
+        ps.setInt(1,tid);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            topic = BeanUtil.getBean(rs);
+        }
+        con.close();
+        return topic;
     }
 
 

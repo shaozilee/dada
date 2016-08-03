@@ -469,6 +469,7 @@ a:hover {
 .page {
   background-color: #fff;
   position: relative;
+  min-height: 500px;
 }
 
 .page-wrap {
@@ -476,4 +477,117 @@ a:hover {
   margin: 0 auto;
   position: relative;
   padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+
+/***********header*****************/
+.header {
+  height: 100px;
+  background-color: #fff;
+  position: relative;
+  z-index: 90;
+}
+
+.header-wrap{
+  width: 1000px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header-logo {
+  float: left;
+  width: 300px;
+  height: 100px;
+  margin-left: 50%;
+}
+
+.header-logo .da-logo {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: url("img/logo.png") no-repeat;
+  background-size: 100%;
+  margin-left: -50%;
+}
+
+/***********footer*****************/
+
+.footer{
+  width: 100%;
+  background-color: #363636;
+}
+
+.footer .box{
+  width: 650px;
+  height: 140px;
+  margin: 0 auto;
+}
+
+.footer_guide{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.footer_guide li{
+  float: left;
+  width: 140px;
+  line-height: 24px;
+  font-size: 12px;
+}
+.footer_guide dl{
+  display: block;
+}
+.footer_guide dl dt{
+  font-weight: bold;
+  color: #c2c2c2;
+}
+.footer_guide dl dd{
+  padding: 0px;
+  margin: 0px;
+}
+.footer_guide dl dd a{
+  color: #959595;
+}
+
+
+.footer .copyright{
+  width: 1024px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  text-align: center;
+  color:#c2c2c2;
+  font-size: 12px;
+}
+
+.footer .friend-link{
+  width: 1024px;
+  line-height: 30px;
+  margin: 0 auto;
+  font-size: 12px;
+}
+.footer .friend-link a{
+  color: #959595;
+}
+
+
+
+.btn{
+  display: block;
+  height: 36px;
+  background-color: #ff9d00;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  line-height: 36px;
+  font-size: 16px;
+}
+
+.btn:hover{
+  color: #fff;
+  background-color: #ffba06;
+  text-decoration: none;
 }

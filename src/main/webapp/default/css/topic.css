@@ -1,0 +1,14 @@
+.post-title h1{
+  float: left;
+  width: 580px;
+  line-height: 35px;
+  overflow: hidden;
+  font-size: 24px;
+  color: #a6551f;
+  font-weight: normal;
+}
+
+.reply-box{
+  padding: 20px;
+  border-top: 1px #efefef solid;
+}

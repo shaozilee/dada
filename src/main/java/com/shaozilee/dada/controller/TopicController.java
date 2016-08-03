@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lee on 15-9-13.
@@ -25,13 +26,14 @@ import java.util.List;
 @Controller
 public class TopicController extends AbstractController{
     private static Logger logger = LogManager.getLogger(TopicController.class);
-    private static Integer PAGE_SIZE = 2;
+    private static Integer TOPIC_PAGE_SIZE = 10;
+    private static Integer POST_PAGE_SIZE = 10;
 
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
         Integer page = 1;
         Integer totalCount = TopicDao.getInstance().getTotalCount();
-        Integer totalPage = Math.round((float)totalCount/PAGE_SIZE);
+        Integer totalPage = Math.round((float)totalCount/TOPIC_PAGE_SIZE);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
@@ -39,7 +41,7 @@ public class TopicController extends AbstractController{
         model.addAttribute("currentPage",page);
 
         //获取第一页主题数据
-        List topicList = TopicDao.getInstance().getTopics(1,PAGE_SIZE);
+        List topicList = TopicDao.getInstance().getTopics(1,TOPIC_PAGE_SIZE);
         model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
@@ -47,7 +49,7 @@ public class TopicController extends AbstractController{
     @RequestMapping("/index-{page}")
     public String indexByPage(@PathVariable Integer page,@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
         Integer totalCount = TopicDao.getInstance().getTotalCount();
-        Integer totalPage = Math.round((float)totalCount/PAGE_SIZE);
+        Integer totalPage = Math.round((float)totalCount/TOPIC_PAGE_SIZE);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
@@ -55,15 +57,18 @@ public class TopicController extends AbstractController{
         model.addAttribute("currentPage",page);
 
         //获取第一页主题数据
-        List topicList = TopicDao.getInstance().getTopics(page, PAGE_SIZE);
+        List topicList = TopicDao.getInstance().getTopics(page, TOPIC_PAGE_SIZE);
         model.addAttribute("topicList",topicList);
         return api?debugAPI(model):"index";
     }
 
     @RequestMapping("/topic-{tid}-{page}")
     public String topic(@PathVariable Integer tid, @PathVariable Integer page, @RequestParam(value="api", required=false, defaultValue="false") boolean api,Model model) throws Exception{
+        Map topic = TopicDao.getInstance().getTopicByTid(tid);
+        model.addAttribute("topic",topic);
+
         PostDao postDao = PostDao.getInstance();
-        List list = postDao.getPostsByTid(tid, page);
+        List list = postDao.getPostsByTid(tid, page,POST_PAGE_SIZE);
         model.addAttribute("postList",list);
         return api?debugAPI(model):"topic";
     }
@@ -104,11 +109,12 @@ public class TopicController extends AbstractController{
         f.setDateLine(time);
         f.setAuthorId(0);
         f.setAuthorName("lishg");
-        f.setTid(f.getTid());
-        postDao.add(f);
+        f.setSubject("");
+
+        f = postDao.add(f);
 
 
-        String jsonStr = toJson(AjaxCode.SUC, response);
+        String jsonStr = toJson(f,AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }
 

@@ -12,8 +12,8 @@
         <div class="topic-box">
           <div class="top-bar clearfix">
             <ul class="top-left">
-              <li>欢迎 <a href="#">登录</a>/<a href="#">注册</a> 光临</li>
-              <li>总帖数:1000</li>
+              <li>欢迎 <a href="login.html">登录</a>/<a href="#">注册</a> 光临</li>
+              <li>总帖数:${totalCount}</li>
               <li>今日共:100</li>
             </ul>
             <div class="top-right">
@@ -35,16 +35,20 @@
           <div class="page-bar">
             <ul>
               <li class="first"><a href="index.html">首页</a></li>
-              <li class="pre ${hasPre?'':'disable'}"><a href="${hasPre?'index-'+(currentPage-1)+'.html':'javascript:void;'}">&lt;</a></li>
+              <li class="pre ${hasPre?'':'disable'}"><a href="${hasPre?'index-'+(currentPage-1)+'.html':'javascript:void(0);'}">&lt;</a></li>
               <%
               var start = (currentPage-4)>0?(currentPage-4):1;
+              if(start+8 > totalPage){
+                start = (totalPage>8)?totalPage-8:1;
+              }
+
               var end = (start+8)>totalPage?totalPage:(start+8);
 
               for(var i=start;i<=end;i++){%>
               <li class="${i==currentPage?'selected':''}"><a href="index-${i}.html">${i}</a></li>
               <% }%>
 
-              <li class="next ${hasNext?'':'disable'}"><a href="${hasNext?'index-'+(currentPage+1)+'.html':'javascript:void;'}">&gt;</a></li>
+              <li class="next ${hasNext?'':'disable'}"><a href="${hasNext?'index-'+(currentPage+1)+'.html':'javascript:void(0);'}">&gt;</a></li>
               <li class="last"><a href="index-${totalPage}.html">末页</a></li>
 
 
