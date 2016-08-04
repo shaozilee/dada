@@ -28,7 +28,7 @@ public class PostDao {
 
     public ForumPost add(ForumPost post) throws SQLException {
         Connection con = DS.getConnection();
-        String sql = "INSERT INTO forum_post(tid,author_name,author_id,subject,date_line,message) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO forum_post(tid,authorName,authorId,subject,dateLine,message) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql,new String[]{"pid"});
         ps.setInt(1, post.getTid());
         ps.setString(2,post.getAuthorName());
@@ -51,7 +51,7 @@ public class PostDao {
         int start = (pageNum-1)*pageSize;
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        String sql = "SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
+        String sql = "SELECT pid,tid,authorName,authorId,subject,dateLine,message,useIp,invisible,anonymous,status,tags FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1,tid);
         ps.setInt(2,start);

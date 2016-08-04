@@ -1,5 +1,6 @@
 package com.shaozilee.dada.controller;
 
+import com.shaozilee.dada.dao.MemberDao;
 import com.shaozilee.dada.pojo.CommonMember;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Member;
+import java.util.Date;
 
 /**
  * Created by lee on 15-9-13.
@@ -41,8 +44,17 @@ public class MemberController extends AbstractController{
 
     @RequestMapping("/doRegist")
     public void doRegist(CommonMember mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-        String jsonStr = toJson(AjaxCode.SUC, response);
-        logger.debug(jsonStr);
+        mem.setRegDate(new Date().getTime());
+        try{
+            mem = MemberDao.getInstance().add(mem);
+            request.getSession().setAttribute("user",mem);
+            toJson(AjaxCode.SUC, response);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            toJson(AjaxCode.ERR, response);
+        }
+
     }
 
 

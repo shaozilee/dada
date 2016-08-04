@@ -2,33 +2,33 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT uid,user_name,password,email,status,email_status,reg_date,credits,last_login_ip,last_login_time FROM common_member
+ * SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginIp,lastLoginTime FROM common_member
  *
  **/
 
 
 public class CommonMember {
 	public Integer uid;
-	public String user_name;
+	public String userName;
 	public String password;
 	public String email;
 	public Boolean status;
-	public Boolean email_status;
-	public Long reg_date;
+	public Boolean emailStatus;
+	public Long regDate;
 	public Integer credits;
-	public Integer last_login_ip;
-	public Long last_login_time;
+	public Integer lastLoginIp;
+	public Long lastLoginTime;
 	public void setUid(Integer uid){
 	this.uid=uid;
 	}
 	public Integer getUid(){
 		return uid;
 	}
-	public void setUserName(String user_name){
-	this.user_name=user_name;
+	public void setUserName(String userName){
+	this.userName=userName;
 	}
 	public String getUserName(){
-		return user_name;
+		return userName;
 	}
 	public void setPassword(String password){
 	this.password=password;
@@ -48,17 +48,17 @@ public class CommonMember {
 	public Boolean getStatus(){
 		return status;
 	}
-	public void setEmailStatus(Boolean email_status){
-	this.email_status=email_status;
+	public void setEmailStatus(Boolean emailStatus){
+	this.emailStatus=emailStatus;
 	}
 	public Boolean getEmailStatus(){
-		return email_status;
+		return emailStatus;
 	}
-	public void setRegDate(Long reg_date){
-	this.reg_date=reg_date;
+	public void setRegDate(Long regDate){
+	this.regDate=regDate;
 	}
 	public Long getRegDate(){
-		return reg_date;
+		return regDate;
 	}
 	public void setCredits(Integer credits){
 	this.credits=credits;
@@ -66,17 +66,17 @@ public class CommonMember {
 	public Integer getCredits(){
 		return credits;
 	}
-	public void setLastLoginIp(Integer last_login_ip){
-	this.last_login_ip=last_login_ip;
+	public void setLastLoginIp(Integer lastLoginIp){
+	this.lastLoginIp=lastLoginIp;
 	}
 	public Integer getLastLoginIp(){
-		return last_login_ip;
+		return lastLoginIp;
 	}
-	public void setLastLoginTime(Long last_login_time){
-	this.last_login_time=last_login_time;
+	public void setLastLoginTime(Long lastLoginTime){
+	this.lastLoginTime=lastLoginTime;
 	}
 	public Long getLastLoginTime(){
-		return last_login_time;
+		return lastLoginTime;
 	}
 }
 

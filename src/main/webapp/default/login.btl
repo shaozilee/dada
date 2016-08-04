@@ -27,14 +27,14 @@
         border-radius: 4px;
         border: none;
         overflow: hidden;
-        text-indent: 60px;
+        text-indent: 50px;
       }
 
       .row label{
         position: absolute;
         left: 10px;
         top: 0px;
-        width: 70px;
+        width: 40px;
         line-height: 40px;
         height: 40px;
         font-size: 14px;
@@ -73,11 +73,11 @@
         <div id="loginPanel" class="panel show">
           <div class="row">
             <input type="text" id="userName"/>
-            <label>账<i class="zi"></i>号</label>
+            <label>账号</label>
           </div>
           <div class="row">
             <input type="password" id="password"/>
-            <label>密<i class="zi"></i>码</label>
+            <label>密码</label>
           </div>
           <div class="row">
             <a id="loginBtn" class="btn login-btn" href="javascript:void(0);">登录</a>
@@ -88,12 +88,6 @@
 
           </div>
 
-        </div>
-        <div id="resultPanel" class="panel">
-          <div class="row msg"></div>
-          <div class="row">
-            <a href="javascript:void(0);" class="btn ok-btn">确定</a>
-          </div>
         </div>
 
       </div>
@@ -113,7 +107,7 @@
 
       $("#loginBtn").click(function(){
         var param = {
-          user_name:$("#userName").val(),
+          userName:$("#userName").val(),
           password: $("#password").val()
         };
 

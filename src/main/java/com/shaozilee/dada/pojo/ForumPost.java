@@ -2,7 +2,7 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT pid,tid,author_name,author_id,subject,date_line,message,useIp,invisible,anonymous,status,tags FROM forum_post
+ * SELECT pid,tid,authorName,authorId,subject,dateLine,message,useIp,invisible,anonymous,status,tags,ppid FROM forum_post
  *
  **/
 
@@ -10,16 +10,17 @@ package com.shaozilee.dada.pojo;
 public class ForumPost {
 	public Integer pid;
 	public Integer tid;
-	public String author_name;
-	public Integer author_id;
+	public String authorName;
+	public Integer authorId;
 	public String subject;
-	public Long date_line;
+	public Long dateLine;
 	public String message;
 	public String useIp;
 	public Boolean invisible;
 	public Boolean anonymous;
 	public Boolean status;
 	public String tags;
+	public Integer ppid;
 	public void setPid(Integer pid){
 	this.pid=pid;
 	}
@@ -32,17 +33,17 @@ public class ForumPost {
 	public Integer getTid(){
 		return tid;
 	}
-	public void setAuthorName(String author_name){
-	this.author_name=author_name;
+	public void setAuthorName(String authorName){
+	this.authorName=authorName;
 	}
 	public String getAuthorName(){
-		return author_name;
+		return authorName;
 	}
-	public void setAuthorId(Integer author_id){
-	this.author_id=author_id;
+	public void setAuthorId(Integer authorId){
+	this.authorId=authorId;
 	}
 	public Integer getAuthorId(){
-		return author_id;
+		return authorId;
 	}
 	public void setSubject(String subject){
 	this.subject=subject;
@@ -50,11 +51,11 @@ public class ForumPost {
 	public String getSubject(){
 		return subject;
 	}
-	public void setDateLine(Long date_line){
-	this.date_line=date_line;
+	public void setDateLine(Long dateLine){
+	this.dateLine=dateLine;
 	}
 	public Long getDateLine(){
-		return date_line;
+		return dateLine;
 	}
 	public void setMessage(String message){
 	this.message=message;
@@ -91,6 +92,12 @@ public class ForumPost {
 	}
 	public String getTags(){
 		return tags;
+	}
+	public void setPpid(Integer ppid){
+	this.ppid=ppid;
+	}
+	public Integer getPpid(){
+		return ppid;
 	}
 }
 

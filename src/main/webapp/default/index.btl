@@ -12,7 +12,7 @@
         <div class="topic-box">
           <div class="top-bar clearfix">
             <ul class="top-left">
-              <li>欢迎 <a href="login.html">登录</a>/<a href="#">注册</a> 光临</li>
+              <li>欢迎 <a href="login.html">登录</a>/<a href="regist.html">注册</a> 光临</li>
               <li>总帖数:${totalCount}</li>
               <li>今日共:100</li>
             </ul>

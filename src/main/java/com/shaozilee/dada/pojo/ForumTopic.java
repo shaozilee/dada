@@ -2,30 +2,30 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT tid,read_perm,author_name,author_id,subject,date_line,last_post,last_poster,views,replies,display_order,high_light,digest,closed,stick_reply,status,fav_times,share_times,stamp,icon FROM forum_topic
+ * SELECT tid,readPerm,authorName,authorId,subject,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic
  *
  **/
 
 
 public class ForumTopic {
 	public Integer tid;
-	public Integer read_perm;
-	public String author_name;
-	public Integer author_id;
+	public Integer readPerm;
+	public String authorName;
+	public Integer authorId;
 	public String subject;
-	public Long date_line;
-	public Long last_post;
-	public String last_poster;
+	public Long dateLine;
+	public Long lastPost;
+	public String lastPoster;
 	public Integer views;
 	public Integer replies;
-	public Integer display_order;
-	public Boolean high_light;
+	public Integer displayOrder;
+	public Boolean highLight;
 	public Boolean digest;
 	public Integer closed;
-	public Boolean stick_reply;
+	public Boolean stickReply;
 	public Integer status;
-	public Integer fav_times;
-	public Integer share_times;
+	public Integer favTimes;
+	public Integer shareTimes;
 	public Integer stamp;
 	public Integer icon;
 	public void setTid(Integer tid){
@@ -34,23 +34,23 @@ public class ForumTopic {
 	public Integer getTid(){
 		return tid;
 	}
-	public void setReadPerm(Integer read_perm){
-	this.read_perm=read_perm;
+	public void setReadPerm(Integer readPerm){
+	this.readPerm=readPerm;
 	}
 	public Integer getReadPerm(){
-		return read_perm;
+		return readPerm;
 	}
-	public void setAuthorName(String author_name){
-	this.author_name=author_name;
+	public void setAuthorName(String authorName){
+	this.authorName=authorName;
 	}
 	public String getAuthorName(){
-		return author_name;
+		return authorName;
 	}
-	public void setAuthorId(Integer author_id){
-	this.author_id=author_id;
+	public void setAuthorId(Integer authorId){
+	this.authorId=authorId;
 	}
 	public Integer getAuthorId(){
-		return author_id;
+		return authorId;
 	}
 	public void setSubject(String subject){
 	this.subject=subject;
@@ -58,23 +58,23 @@ public class ForumTopic {
 	public String getSubject(){
 		return subject;
 	}
-	public void setDateLine(Long date_line){
-	this.date_line=date_line;
+	public void setDateLine(Long dateLine){
+	this.dateLine=dateLine;
 	}
 	public Long getDateLine(){
-		return date_line;
+		return dateLine;
 	}
-	public void setLastPost(Long last_post){
-	this.last_post=last_post;
+	public void setLastPost(Long lastPost){
+	this.lastPost=lastPost;
 	}
 	public Long getLastPost(){
-		return last_post;
+		return lastPost;
 	}
-	public void setLastPoster(String last_poster){
-	this.last_poster=last_poster;
+	public void setLastPoster(String lastPoster){
+	this.lastPoster=lastPoster;
 	}
 	public String getLastPoster(){
-		return last_poster;
+		return lastPoster;
 	}
 	public void setViews(Integer views){
 	this.views=views;
@@ -88,17 +88,17 @@ public class ForumTopic {
 	public Integer getReplies(){
 		return replies;
 	}
-	public void setDisplayOrder(Integer display_order){
-	this.display_order=display_order;
+	public void setDisplayOrder(Integer displayOrder){
+	this.displayOrder=displayOrder;
 	}
 	public Integer getDisplayOrder(){
-		return display_order;
+		return displayOrder;
 	}
-	public void setHighLight(Boolean high_light){
-	this.high_light=high_light;
+	public void setHighLight(Boolean highLight){
+	this.highLight=highLight;
 	}
 	public Boolean getHighLight(){
-		return high_light;
+		return highLight;
 	}
 	public void setDigest(Boolean digest){
 	this.digest=digest;
@@ -112,11 +112,11 @@ public class ForumTopic {
 	public Integer getClosed(){
 		return closed;
 	}
-	public void setStickReply(Boolean stick_reply){
-	this.stick_reply=stick_reply;
+	public void setStickReply(Boolean stickReply){
+	this.stickReply=stickReply;
 	}
 	public Boolean getStickReply(){
-		return stick_reply;
+		return stickReply;
 	}
 	public void setStatus(Integer status){
 	this.status=status;
@@ -124,17 +124,17 @@ public class ForumTopic {
 	public Integer getStatus(){
 		return status;
 	}
-	public void setFavTimes(Integer fav_times){
-	this.fav_times=fav_times;
+	public void setFavTimes(Integer favTimes){
+	this.favTimes=favTimes;
 	}
 	public Integer getFavTimes(){
-		return fav_times;
+		return favTimes;
 	}
-	public void setShareTimes(Integer share_times){
-	this.share_times=share_times;
+	public void setShareTimes(Integer shareTimes){
+	this.shareTimes=shareTimes;
 	}
 	public Integer getShareTimes(){
-		return share_times;
+		return shareTimes;
 	}
 	public void setStamp(Integer stamp){
 	this.stamp=stamp;

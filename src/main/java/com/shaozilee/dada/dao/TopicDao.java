@@ -46,7 +46,7 @@ public class TopicDao {
 
     public ForumTopic add(ForumTopic topic) throws SQLException {
         Connection con = DS.getConnection();
-        String sql = "INSERT INTO forum_topic(author_name,author_id,subject,date_line,last_post,last_poster) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO forum_topic(authorName,authorId,subject,dateLine,lastPost,lastPoster) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql,new String[]{"tid"});
         ps.setString(1,topic.getAuthorName());
         ps.setInt(2,topic.getAuthorId());
@@ -79,7 +79,7 @@ public class TopicDao {
     public Map getTopicByTid(Integer tid)throws  SQLException{
         Map topic = null;
         Connection con = DS.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT tid,read_perm,author_name,author_id,subject,date_line,last_post,last_poster,views,replies,display_order,high_light,digest,closed,stick_reply,status,fav_times,share_times,stamp,icon FROM forum_topic WHERE tid = ?");
+        PreparedStatement ps = con.prepareStatement("SELECT tid,readPerm,authorName,authorId,subject,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic WHERE tid = ?");
         ps.setInt(1,tid);
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
