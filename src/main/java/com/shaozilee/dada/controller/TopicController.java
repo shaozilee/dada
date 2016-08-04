@@ -32,8 +32,8 @@ public class TopicController extends AbstractController{
     @RequestMapping("/index")
     public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
         Integer page = 1;
-        Integer totalCount = TopicDao.getInstance().getTotalCount();
-        Integer totalPage = Math.round((float)totalCount/TOPIC_PAGE_SIZE);
+        int totalCount = TopicDao.getInstance().getTotalCount();
+        int totalPage = (int)Math.ceil((double)totalCount / TOPIC_PAGE_SIZE);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
@@ -48,8 +48,8 @@ public class TopicController extends AbstractController{
 
     @RequestMapping("/index-{page}")
     public String indexByPage(@PathVariable Integer page,@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
-        Integer totalCount = TopicDao.getInstance().getTotalCount();
-        Integer totalPage = Math.round((float)totalCount/TOPIC_PAGE_SIZE);
+        int totalCount = TopicDao.getInstance().getTotalCount();
+        int totalPage = (int)Math.ceil((double)totalCount / TOPIC_PAGE_SIZE);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);

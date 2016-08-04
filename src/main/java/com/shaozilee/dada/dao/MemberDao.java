@@ -47,5 +47,19 @@ public class MemberDao {
         return member;
     }
 
+    public CommonMember getUserByEmail(String email) throws SQLException {
+        CommonMember member = null;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginIp,lastLoginTime FROM common_member WHERE email = ?");
+        ps.setString(1,email);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            member = (CommonMember)BeanUtil.getBean(CommonMember.class,rs);
+        }
+        con.close();
+        return member;
+    }
+
+
 
 }

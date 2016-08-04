@@ -30,11 +30,22 @@ public class MemberController extends AbstractController{
     }
 
     @RequestMapping("/doLogin")
-    public void doLogin(CommonMember user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-        request.getSession().setAttribute("user",user);
+    public void doLogin(CommonMember member,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        try{
+            member = MemberDao.getInstance().getUserByEmail(member.getEmail());
+            if(member.getPassword().equals(member.getPassword())){
+                request.getSession().setAttribute("user",member);
+                toJson(AjaxCode.SUC, response);
+            }else{
+                toJson(AjaxCode.ERR_LOGIN_INCORRECT, response);
+            }
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            toJson(AjaxCode.ERR, response);
+        }
 
-        String jsonStr = toJson(AjaxCode.SUC, response);
-        logger.debug(jsonStr);
+
     }
 
     @RequestMapping("/regist")

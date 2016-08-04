@@ -72,7 +72,7 @@
       <div style="margin:0 auto;width:340px;padding:40px;border-radius: 10px;border:1px #cccccc solid;overflow: hidden;">
         <div id="loginPanel" class="panel show">
           <div class="row">
-            <input type="text" id="userName"/>
+            <input type="text" id="email"/>
             <label>账号</label>
           </div>
           <div class="row">
@@ -107,7 +107,7 @@
 
       $("#loginBtn").click(function(){
         var param = {
-          userName:$("#userName").val(),
+          email:$("#email").val(),
           password: $("#password").val()
         };
 
