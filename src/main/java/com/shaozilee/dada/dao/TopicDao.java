@@ -31,7 +31,7 @@ public class TopicDao {
         logger.debug("start:"+start);
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM forum_topic ORDER BY tid DESC LIMIT ?,?");
+        PreparedStatement ps = con.prepareStatement("SELECT tid,readPerm,authorName,authorId,subject,message,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic ORDER BY tid DESC LIMIT ?,?");
         ps.setInt(1,start);
         ps.setInt(2,pageSize);
         ResultSet rs = ps.executeQuery();
@@ -46,14 +46,15 @@ public class TopicDao {
 
     public ForumTopic add(ForumTopic topic) throws SQLException {
         Connection con = DS.getConnection();
-        String sql = "INSERT INTO forum_topic(authorName,authorId,subject,dateLine,lastPost,lastPoster) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO forum_topic(authorName,authorId,subject,dateLine,lastPost,lastPoster,message) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql,new String[]{"tid"});
         ps.setString(1,topic.getAuthorName());
-        ps.setInt(2,topic.getAuthorId());
-        ps.setString(3,topic.getSubject());
-        ps.setLong(4,topic.getDateLine());
+        ps.setInt(2, topic.getAuthorId());
+        ps.setString(3, topic.getSubject());
+        ps.setLong(4, topic.getDateLine());
         ps.setLong(5,topic.getLastPost());
-        ps.setString(6,topic.getLastPoster());
+        ps.setString(6, topic.getLastPoster());
+        ps.setString(7,topic.getMessage());
         ps.executeUpdate();
         ResultSet rs = ps.getGeneratedKeys();
         if(rs!=null && rs.next())
@@ -79,7 +80,7 @@ public class TopicDao {
     public Map getTopicByTid(Integer tid)throws  SQLException{
         Map topic = null;
         Connection con = DS.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT tid,readPerm,authorName,authorId,subject,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic WHERE tid = ?");
+        PreparedStatement ps = con.prepareStatement("SELECT tid,readPerm,authorName,authorId,subject,message,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic WHERE tid = ?");
         ps.setInt(1,tid);
         ResultSet rs = ps.executeQuery();
         if(rs.next()){

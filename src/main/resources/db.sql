@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `dada`.`forum_topic` (
   `authorName` CHAR(15) NOT NULL,
   `authorId` INT  NOT NULL DEFAULT 0,
   `subject` CHAR(80) NOT NULL,
+  `message` MEDIUMTEXT NOT NULL,
   `dateLine` BIGINT  NOT NULL DEFAULT 0,
   `lastPost` BIGINT  NOT NULL DEFAULT 0,
   `lastPoster` CHAR(15) NOT NULL,

@@ -2,6 +2,7 @@ package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.PostDao;
 import com.shaozilee.dada.dao.TopicDao;
+import com.shaozilee.dada.pojo.CommonMember;
 import com.shaozilee.dada.pojo.ForumPost;
 import com.shaozilee.dada.pojo.ForumTopic;
 import com.shaozilee.dada.utils.AjaxCode;
@@ -73,28 +74,27 @@ public class TopicController extends AbstractController{
         return api?debugAPI(model):"topic";
     }
 
+
+    @RequestMapping("/topic/new")
+    public String newTopic(Model model) throws Exception{
+        return "new";
+    }
+
     @RequestMapping("/topic/save")
     public void saveTopic(ForumPost f,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        CommonMember member = (CommonMember)request.getSession().getAttribute("user");
         Long time = new Date().getTime();
-
 
         TopicDao topicDao = TopicDao.getInstance();
         ForumTopic topic = new ForumTopic();
-        topic.setAuthorId(0);
-        topic.setAuthorName("lishg");
+        topic.setAuthorId(member.getUid());
+        topic.setAuthorName(member.getUserName());
         topic.setDateLine(time);
         topic.setLastPost(time);
-        topic.setLastPoster("lishg");
+        topic.setLastPoster(member.getUserName());
         topic.setSubject(f.getSubject());
+        topic.setMessage(f.getMessage());
         topicDao.add(topic);
-
-
-        PostDao postDao = PostDao.getInstance();
-        f.setDateLine(time);
-        f.setAuthorId(0);
-        f.setAuthorName("lishg");
-        f.setTid(topic.getTid());
-        postDao.add(f);
 
 
         String jsonStr = toJson(AjaxCode.SUC, response);
@@ -102,26 +102,22 @@ public class TopicController extends AbstractController{
     }
 
     @RequestMapping("/post/save")
-    public void savePost(ForumPost f,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void savePost(ForumPost f,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        CommonMember member = (CommonMember)request.getSession().getAttribute("user");
         Long time = new Date().getTime();
 
         PostDao postDao = PostDao.getInstance();
         f.setDateLine(time);
-        f.setAuthorId(0);
-        f.setAuthorName("lishg");
+        f.setAuthorId(member.getUid());
+        f.setAuthorName(member.getUserName());
         f.setSubject("");
 
         f = postDao.add(f);
-
 
         String jsonStr = toJson(f,AjaxCode.SUC, response);
         logger.debug(jsonStr);
     }
 
-    @RequestMapping("/topic/new")
-    public String newTopic(Model model) throws Exception{
-        return "new";
-    }
 
 
 

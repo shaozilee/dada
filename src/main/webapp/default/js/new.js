@@ -4,10 +4,11 @@
 $(function(){
     var um = UM.getEditor('myEditor');
 
-    $(".post-btn").click(function() {
+    $(".edui-btn-toolbar").append("<a class='submit-btn'>提交发布</a>");
+
+    $(".submit-btn").click(function() {
         var param = {
-            pid:$(this).data("pid"),
-            subject: $(".title-input").val(),
+            subject: $(".subject-input").val(),
             message: um.getContent()
         };
 

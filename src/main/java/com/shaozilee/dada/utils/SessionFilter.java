@@ -69,10 +69,11 @@ public class SessionFilter implements Filter {
                 if(include[i].matcher(url).find()){
                     if(request.getSession().getAttribute("user") == null){
                         logger.debug("find include:"+url);
+                        //判断是否是ajax请求
                         Pattern pattern = Pattern.compile(".*\\.do(\\?)?.*");
                         if(pattern.matcher(url).find()){
                             Map result = new HashMap();
-                            result.put("status",-1);
+                            result.put("status",AjaxCode.ERR_NO_PERMISSION);
                             result.put("msg","没有权限访问此请求！");
                             String jsonString = new JSONObject(result).toString();
                             response.getWriter().write(jsonString);

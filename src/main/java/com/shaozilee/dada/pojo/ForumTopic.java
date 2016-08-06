@@ -2,7 +2,7 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT tid,readPerm,authorName,authorId,subject,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic
+ * SELECT tid,readPerm,authorName,authorId,subject,message,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic
  *
  **/
 
@@ -13,6 +13,7 @@ public class ForumTopic {
 	public String authorName;
 	public Integer authorId;
 	public String subject;
+	public String message;
 	public Long dateLine;
 	public Long lastPost;
 	public String lastPoster;
@@ -57,6 +58,12 @@ public class ForumTopic {
 	}
 	public String getSubject(){
 		return subject;
+	}
+	public void setMessage(String message){
+	this.message=message;
+	}
+	public String getMessage(){
+		return message;
 	}
 	public void setDateLine(Long dateLine){
 	this.dateLine=dateLine;

@@ -3,35 +3,32 @@
   <head>
     <title>Easy API Platform</title>
     <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/new.css">
 
   </head>
   <body>
     <% include("_header.btl"){} %>
-    <div>
-        <div>
+    <div class="page">
+      <div class="page-wrap">
+        <div class="editor">
+          <div class="subject"><input type="text" class="subject-input" placeholder="未定义标题"></div>
 
-        <span class="title-label">标题：</span>
-        <input type="text" class="title-input">
+          <!--style给定宽度可以影响编辑器的最终宽度-->
+          <script type="text/plain" id="myEditor" style="width:1000px;min-height:500px;">
+              <p>这里我可以写一些输入提示</p>
+          </script>
+        </div>
         </div>
 
-        <!--style给定宽度可以影响编辑器的最终宽度-->
-        <script type="text/plain" id="myEditor" style="width:1000px;height:240px;">
-            <p>这里我可以写一些输入提示</p>
-        </script>
-
-        <div>
-            <button class="post-btn">提交发布</button>
-        </div>
     </div>
+    <% include("_footer.btl"){} %>
     <% include("_commonjs.btl"){} %>
-
-    <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.config.js"></script>
     <script type="text/javascript">
         window.UMEDITOR_CONFIG.toolbar = [
             'bold backcolor justifyleft justifycenter justifyright justifyjustify',
-            'link unlink emotion image video drafts'
+            'link unlink emotion image video'
         ]
     </script>
     <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.js"> </script>

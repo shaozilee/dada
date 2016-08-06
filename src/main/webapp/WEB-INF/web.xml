@@ -39,20 +39,22 @@
     <filter-class>com.shaozilee.dada.utils.SessionFilter</filter-class>
     <init-param>
       <param-name>include</param-name>
-      <param-value>^/post/.*;</param-value>
+      <param-value>^/post/.*;^/topic/.*;</param-value>
     </init-param>
+    <!--
     <init-param>
       <param-name>exclude</param-name>
-      <param-value>/post/new.html</param-value>
+      <param-value></param-value>
     </init-param>
+    -->
   </filter>
   <filter-mapping>
     <filter-name>sessionFilter</filter-name>
-    <url-pattern>*.html1</url-pattern>
+    <url-pattern>*.html</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>sessionFilter</filter-name>
-    <url-pattern>*.do1</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </filter-mapping>
 
 

@@ -3,47 +3,59 @@
   <head>
     <title>Easy API Platform</title>
     <% include("_common.btl"){} %>
+    <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/topic.css">
   </head>
   <body>
     <% include("_header.btl"){} %>
     <div class="page">
       <div class="page-wrap">
-        <div class="post-title clearfix">
+        <div class="topic-title clearfix">
           <h1>${topic.subject}</h1>
         </div>
+        <div class="topic">
+          <div class="topic-top">${topic.authorName}发表于${topic.dateLine}</div>
+          <div class="topic-body">${topic.message}</div>
+        </div>
 
-        <ul>
+        <ul class="post-list">
           <% for(post in postList){%>
-          <li>
-            ${post.message}
+          <li class="post clearfix">
+            <div class="post-info">
+              <div class="photo"><img
+                src="http://file31.mafengwo.net/M00/1B/8E/wKgBs1egTzaAMctSAAB2q_hBVwY38.head.w48.jpeg" alt=""/></div>
+              <div class="mem">${post.authorName}</div>
+              <div class="other">12F</div>
+            </div>
+            <div class="post-message">
+              ${post.message}
+            </div>
           </li>
           <% }%>
         </ul>
 
-        <div class="reply-box">
-          回复：<input type="text" id="replyText"><button id="replyBtn" data-tid="${tid}">提交</button>
+        <div class="reply-box" data-tid="${topic.tid}">
+          <!--style给定宽度可以影响编辑器的最终宽度-->
+          <script type="text/plain" id="replyText" style="width:1000px;min-height:120px;" >
+              <p>这里我可以写一些输入提示</p>
+          </script>
 
         </div>
       </div>
     </div>
 
+    <% include("_footer.btl"){} %>
     <% include("_commonjs.btl"){} %>
-
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.config.js"></script>
     <script type="text/javascript">
-
-        $("#replyBtn").click(function(){
-            var param = {
-                tid:$(this).data("tid"),
-                message: $("#replyText").val()
-            };
-
-            $.post(DA.ROOT+"/post/save.do", param, function (data) {
-                console.log(data);
-            });
-        });
-
+      window.UMEDITOR_CONFIG.toolbar = [
+        'bold backcolor justifyleft justifycenter justifyright justifyjustify',
+        'link unlink emotion image video'
+      ]
     </script>
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.js"> </script>
+    <script type="text/javascript" src="${ctxPath}/${theme}/js/ue/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="${ctxPath}/${theme}/js/topic.js"></script>
 
   </body>
 </html>

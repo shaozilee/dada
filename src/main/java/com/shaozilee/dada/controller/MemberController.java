@@ -29,8 +29,9 @@ public class MemberController extends AbstractController{
         return "login";
     }
 
+
     @RequestMapping("/doLogin")
-    public void doLogin(CommonMember member,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doLogin(CommonMember member,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         try{
             member = MemberDao.getInstance().getUserByEmail(member.getEmail());
             if(member.getPassword().equals(member.getPassword())){
@@ -48,17 +49,28 @@ public class MemberController extends AbstractController{
 
     }
 
+    @RequestMapping("/logout")
+    public void logout(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        request.getSession().removeAttribute("user");
+        response.sendRedirect("index.html");
+    }
+
+    @RequestMapping("/doLogout")
+    public void doLogout(@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        request.getSession().removeAttribute("user");
+        toJson(AjaxCode.SUC, response);
+    }
+
     @RequestMapping("/regist")
     public String regist() throws Exception{
         return "regist";
     }
 
     @RequestMapping("/doRegist")
-    public void doRegist(CommonMember mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,@RequestParam(value="redirect", required=false, defaultValue="false") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doRegist(CommonMember mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         mem.setRegDate(new Date().getTime());
         try{
             mem = MemberDao.getInstance().add(mem);
-            request.getSession().setAttribute("user",mem);
             toJson(AjaxCode.SUC, response);
         }catch (Exception e){
             logger.error(e.getMessage());
