@@ -2,6 +2,10 @@
   max-width:980px;
 }
 
+.edui-editor-body .edui-body-container{
+  color: #666;
+  font-size: 14px;
+}
 
 .topic-title h1{
   float: left;
@@ -64,6 +68,10 @@
   overflow: hidden;
 }
 
+.post-info .photo img{
+  width: 100%;
+}
+
 .post-info .mem{
   float: left;
 }
@@ -82,6 +90,7 @@
 
 .post-message{
   padding-left: 50px;
+  color:#666;
 }
 
 .post-message img{

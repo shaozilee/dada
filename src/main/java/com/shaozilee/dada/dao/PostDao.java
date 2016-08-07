@@ -59,7 +59,7 @@ public class PostDao {
         int start = (pageNum-1)*pageSize;
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        String sql = "SELECT * FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
+        String sql = "SELECT * FROM forum_post  WHERE tid=? ORDER BY pid DESC LIMIT ?,?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1,tid);
         ps.setInt(2,start);

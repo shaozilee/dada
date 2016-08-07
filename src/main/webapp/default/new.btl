@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Easy API Platform</title>
+    <title>发布新帖子</title>
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/new.css">
@@ -16,7 +16,7 @@
 
           <!--style给定宽度可以影响编辑器的最终宽度-->
           <script type="text/plain" id="myEditor" style="width:1000px;min-height:500px;">
-              <p>这里我可以写一些输入提示</p>
+              <p></p>
           </script>
         </div>
         </div>

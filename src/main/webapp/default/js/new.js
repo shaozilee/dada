@@ -12,8 +12,15 @@ $(function(){
             message: um.getContent()
         };
 
-        $.post(DA.ROOT+"/topic/save.do", param, function (data) {
-            console.log(data);
+        $.post(DA.ROOT+"/topic/save.do", param, function (resp) {
+            resp = JSON.parse(resp);
+            if(resp.code === "0000"){
+                DA.tip("发布成功，3秒后回到首页!",function(){
+                    window.location.href=DA.ROOT+"/index.html";
+                },3000);
+            }else{
+                DA.error(resp.msg);
+            }
         });
     });
 

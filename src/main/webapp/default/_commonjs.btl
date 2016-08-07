@@ -5,3 +5,4 @@
         THEME:"${theme}"
     };
 </script>
+<script type="text/javascript" src="${ctxPath}/${theme}/js/common.js"></script>

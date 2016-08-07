@@ -1,6 +1,7 @@
 package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.UserDao;
+import com.shaozilee.dada.pojo.ForumTopic;
 import com.shaozilee.dada.pojo.ForumUser;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
@@ -34,9 +35,18 @@ public class MemberController extends AbstractController{
     @RequestMapping("/doLogin")
     public void doLogin(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         try{
-            user = UserDao.getInstance().getUserByEmail(user.getEmail());
-            if(user.getPassword().equals(user.getPassword())){
-                request.getSession().setAttribute("user",user);
+            if(user.getPassword() == null || "".equals(user.getPassword())){
+                toJson(AjaxCode.ERR_NULL, response);
+                return;
+            }
+            if(user.getEmail() == null || "".equals(user.getEmail())){
+                toJson(AjaxCode.ERR_NULL, response);
+                return;
+            }
+
+            ForumUser newUser = UserDao.getInstance().getUserByEmail(user.getEmail());
+            if(newUser != null && newUser.getPassword().equals(user.getPassword())){
+                request.getSession().setAttribute("user",newUser);
                 toJson(AjaxCode.SUC, response);
             }else{
                 toJson(AjaxCode.ERR_LOGIN_INCORRECT, response);
@@ -69,13 +79,87 @@ public class MemberController extends AbstractController{
 
     @RequestMapping("/doRegist")
     public void doRegist(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        //check null
+        if(user.getUserName() == null || "".equals(user.getUserName())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+        if(user.getPassword() == null || "".equals(user.getPassword())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+        if(user.getEmail() == null || "".equals(user.getEmail())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+        //check exist
+        UserDao userDao = UserDao.getInstance();
+        if(userDao.getUserByEmail(user.getEmail()) != null){
+            toJson(AjaxCode.ERR_REGIST_EMAIL_EXIST, response);
+            return;
+        }
+        if(userDao.getUserByUserName(user.getUserName()) != null){
+            toJson(AjaxCode.ERR_REGIST_USERNAME_EXIST, response);
+            return;
+        }
+
+        //do save
         String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
         user.setRegDate(date);
         try{
-            user = UserDao.getInstance().add(user);
+            user = userDao.add(user);
             toJson(AjaxCode.SUC, response);
         }catch (Exception e){
             logger.error(e.getMessage());
+            e.printStackTrace();
+            toJson(AjaxCode.ERR, response);
+        }
+
+    }
+
+
+    @RequestMapping("/doCheckEmail")
+    public void doCheckEmail(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        try{
+            //email is null
+            if(user.getEmail() == null || "".equals(user.getEmail())){
+                toJson(AjaxCode.ERR_NULL, response);
+                return;
+            }
+            //
+            user = UserDao.getInstance().getUserByEmail(user.getEmail());
+            //email exists
+            if(user != null){
+                toJson(AjaxCode.ERR_REGIST_EMAIL_EXIST, response);
+            }else{
+                toJson(AjaxCode.SUC, response);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            toJson(AjaxCode.ERR, response);
+        }
+
+    }
+
+    @RequestMapping("/doCheckUserName")
+    public void doCheckUserName(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        try{
+            //email is null
+            if(user.getUserName() == null || "".equals(user.getUserName())){
+                toJson(AjaxCode.ERR_NULL, response);
+                return;
+            }
+            //
+            user = UserDao.getInstance().getUserByUserName(user.getUserName());
+            //email exists
+            if(user != null){
+                toJson(AjaxCode.ERR_REGIST_USERNAME_EXIST, response);
+            }else{
+                toJson(AjaxCode.SUC, response);
+            }
+
+        }catch (Exception e){
             e.printStackTrace();
             toJson(AjaxCode.ERR, response);
         }

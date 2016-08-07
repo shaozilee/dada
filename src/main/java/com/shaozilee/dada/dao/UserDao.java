@@ -56,6 +56,18 @@ public class UserDao {
         return user;
     }
 
+    public ForumUser getUserByUserName(String userName) throws SQLException {
+        ForumUser user = null;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM forum_user WHERE userName = ?");
+        ps.setString(1,userName);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            user = (ForumUser)BeanUtil.getBean(ForumUser.class,rs);
+        }
+        con.close();
+        return user;
+    }
 
 
 }

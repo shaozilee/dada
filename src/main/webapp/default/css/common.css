@@ -261,6 +261,7 @@ select,
 textarea {
   font: inherit; /* 1 */
   margin: 0; /* 2 */
+  outline: none;
 }
 
 /**
@@ -591,3 +592,45 @@ a:hover {
   background-color: #ff8a00;
   text-decoration: none;
 }
+
+/********DA component*********/
+
+.da-box{
+  width: 400px;
+  height: 280px;
+  background: #FFF;
+  border-radius: 6px;
+  box-shadow:0 0 3px rgba(0,0,0,0.1);
+  border: 1px #eee solid;
+}
+
+.da-box .icon{
+  width: 400px;
+  height: 180px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+}
+
+.da-box .icon-info{
+  background-image: url("img/icon-info.png");
+}
+
+.da-box .icon-question{
+  background-image: url("img/icon-question.png");
+}
+
+.da-box .icon-yes{
+  background-image: url("img/icon-yes.png");
+}
+
+.da-box .icon-no{
+  background-image: url("img/icon-no.png");
+}
+
+.da-box .close-btn,.da-box .ok-btn,.da-box .cancel-btn{
+  display: inline;
+  padding: 8px 20px;
+}
+
+

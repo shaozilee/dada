@@ -73,8 +73,8 @@ public class SessionFilter implements Filter {
                         Pattern pattern = Pattern.compile(".*\\.do(\\?)?.*");
                         if(pattern.matcher(url).find()){
                             Map result = new HashMap();
-                            result.put("status",AjaxCode.ERR_NO_PERMISSION);
-                            result.put("msg","没有权限访问此请求！");
+                            result.put("code",AjaxCode.ERR_NO_PERMISSION);
+                            result.put("msg","您还没有登录，不能访问此请求！");
                             String jsonString = new JSONObject(result).toString();
                             response.getWriter().write(jsonString);
                             response.getWriter().close();

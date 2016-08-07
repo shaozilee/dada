@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Easy API Platform</title>
+    <title>${topic.subject}-www.dadania.com</title>
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/topic.css">
@@ -18,15 +18,14 @@
           <div class="topic-body">${topic.message}</div>
         </div>
 
-        <ul class="post-list">
+        <ul class="post-list" id="postList">
           <% for(post in postList){%>
           <li class="post clearfix" id="post-${post.pid}">
             <div class="post-info">
-              <div class="photo"><img
-                src="http://file31.mafengwo.net/M00/1B/8E/wKgBs1egTzaAMctSAAB2q_hBVwY38.head.w48.jpeg" alt=""/></div>
+              <div class="photo"><img src="${ctxPath}/${theme}/images/default-master.jpg" alt=""/></div>
               <div class="mem">${post.userName}</div>
               <div class="date">${post.dateLine}</div>
-              <div class="other"><a href="#replyText" class="post-ta" data-pid="${post.pid}">回复TA</a></div>
+              <div class="other"><a href="#replyText" class="post-ta" data-pid="${post.pid}" style="display: none;">回复TA</a></div>
             </div>
             <div class="post-message">
               ${post.message}
@@ -35,7 +34,7 @@
           <% }%>
         </ul>
 
-        <div class="reply-box" data-tid="${topic.tid}" id="reply-box">
+        <div class="reply-box" data-tid="${topic.tid}" id="replyBox">
           <!--style给定宽度可以影响编辑器的最终宽度-->
           <script type="text/plain" id="replyText" style="width:1000px;min-height:120px;" >
               <p>这里我可以写一些输入提示</p>
