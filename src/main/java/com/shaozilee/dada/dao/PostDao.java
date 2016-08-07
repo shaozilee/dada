@@ -28,14 +28,22 @@ public class PostDao {
 
     public ForumPost add(ForumPost post) throws SQLException {
         Connection con = DS.getConnection();
-        String sql = "INSERT INTO forum_post(tid,authorName,authorId,subject,dateLine,message) VALUES (?,?,?,?,?,?)";
+        Integer ppid = post.getPpid();
+        String sql = "INSERT INTO forum_post(tid,userName,uid,dateLine,message) VALUES (?,?,?,?,?)";
+        if(ppid != null){
+            sql = "INSERT INTO forum_post(tid,userName,uid,dateLine,message,"+ppid+") VALUES (?,?,?,?,?,?)";
+        }
+
         PreparedStatement ps = con.prepareStatement(sql,new String[]{"pid"});
         ps.setInt(1, post.getTid());
-        ps.setString(2,post.getAuthorName());
-        ps.setInt(3, post.getAuthorId());
-        ps.setString(4, post.getSubject());
-        ps.setLong(5, post.getDateLine());
-        ps.setString(6,post.getMessage());
+        ps.setString(2, post.getUserName());
+        ps.setInt(3, post.getUid());
+        ps.setString(4, post.getDateLine());
+        ps.setString(5, post.getMessage());
+        if(ppid != null){
+            ps.setInt(6,ppid);
+        }
+
         ps.executeUpdate();
         ResultSet rs = ps.getGeneratedKeys();
         if(rs!=null && rs.next())
@@ -51,7 +59,7 @@ public class PostDao {
         int start = (pageNum-1)*pageSize;
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        String sql = "SELECT pid,tid,authorName,authorId,subject,dateLine,message,useIp,invisible,anonymous,status,tags FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
+        String sql = "SELECT * FROM forum_post  WHERE tid=? ORDER BY pid ASC LIMIT ?,?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1,tid);
         ps.setInt(2,start);

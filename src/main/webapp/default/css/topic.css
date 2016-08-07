@@ -45,16 +45,17 @@
 .post-info{
   background: #f2f2f2;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+  height: 40px;
+  line-height: 40px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 12px;
 }
 
 .post-info .photo{
   float: left;
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   margin-right: 20px;
   position: relative;
@@ -71,6 +72,13 @@
   float: right;
   padding-right: 10px;
 }
+.post-info .date{
+  float: right;
+  padding-right: 20px;
+  color: #ccc;
+  font-size: 12px;
+}
+
 
 .post-message{
   padding-left: 50px;

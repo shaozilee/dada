@@ -35,7 +35,7 @@
                 <a href="topic-${topic.tid}-1.html">${topic.subject}</a>
               </div>
               <div class="other">
-                ${topic.author_name},${topic.date_line},${topic.views},${topic.replies}
+                ${topic.userName},${topic.dateLine},${topic.views},${topic.replies}
               </div>
             </li>
             <% }%>

@@ -1,7 +1,7 @@
 package com.shaozilee.dada.controller;
 
-import com.shaozilee.dada.dao.MemberDao;
-import com.shaozilee.dada.pojo.CommonMember;
+import com.shaozilee.dada.dao.UserDao;
+import com.shaozilee.dada.pojo.ForumUser;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Member;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by lee on 15-9-13.
@@ -31,11 +32,11 @@ public class MemberController extends AbstractController{
 
 
     @RequestMapping("/doLogin")
-    public void doLogin(CommonMember member,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public void doLogin(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         try{
-            member = MemberDao.getInstance().getUserByEmail(member.getEmail());
-            if(member.getPassword().equals(member.getPassword())){
-                request.getSession().setAttribute("user",member);
+            user = UserDao.getInstance().getUserByEmail(user.getEmail());
+            if(user.getPassword().equals(user.getPassword())){
+                request.getSession().setAttribute("user",user);
                 toJson(AjaxCode.SUC, response);
             }else{
                 toJson(AjaxCode.ERR_LOGIN_INCORRECT, response);
@@ -67,10 +68,11 @@ public class MemberController extends AbstractController{
     }
 
     @RequestMapping("/doRegist")
-    public void doRegist(CommonMember mem,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-        mem.setRegDate(new Date().getTime());
+    public void doRegist(ForumUser user,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        user.setRegDate(date);
         try{
-            mem = MemberDao.getInstance().add(mem);
+            user = UserDao.getInstance().add(user);
             toJson(AjaxCode.SUC, response);
         }catch (Exception e){
             logger.error(e.getMessage());

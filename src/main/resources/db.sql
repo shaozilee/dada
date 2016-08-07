@@ -23,19 +23,20 @@ USE `dada` ;
 -- -----------------------------------------------------
 -- Table `dada`.`common_member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `dada`.`common_member` ;
+DROP TABLE IF EXISTS `dada`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `dada`.`common_member` (
+CREATE TABLE IF NOT EXISTS `dada`.`forum_user` (
   `uid` INT  NOT NULL AUTO_INCREMENT,
-  `userName` CHAR(15) NOT NULL,
+  `userName` CHAR(35) NOT NULL,
   `password` CHAR(32) NOT NULL,
   `email` CHAR(40),
   `status` BIT NOT NULL DEFAULT 0,
   `emailStatus` BIT NOT NULL DEFAULT 0,
-  `regDate` BIGINT  NOT NULL DEFAULT 0,
+  `regDate` CHAR(20) NOT NULL,
   `credits` INT NOT NULL DEFAULT 0,
-  `lastLoginIp` INT NOT NULL DEFAULT 0,
-  `lastLoginTime` BIGINT  NOT NULL DEFAULT 0,
+  `lastLoginTime` CHAR(20) NULL,
+  `lastLoginIp` CHAR(15) NULL,
+  `photo` VARCHAR(255) NULL,
   PRIMARY KEY (`uid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;
@@ -48,17 +49,20 @@ DROP TABLE IF EXISTS `dada`.`forum_post` ;
 CREATE TABLE IF NOT EXISTS `dada`.`forum_post` (
   `pid` INT NOT NULL AUTO_INCREMENT,
   `tid` INT NOT NULL DEFAULT 0,
-  `authorName` VARCHAR(15) NOT NULL,
-  `authorId` INT NOT NULL DEFAULT 0,
-  `subject` VARCHAR(80) NOT NULL,
-  `dateLine` BIGINT NOT NULL DEFAULT 0,
+  `userName` CHAR(35) NULL,
+  `uid` INT NULL,
+  `dateLine` CHAR(20) NOT NULL,
   `message` MEDIUMTEXT NOT NULL,
-  `useIp` VARCHAR(15) NOT NULL DEFAULT 0,
+  `postIp` CHAR(15) NULL,
   `invisible` BIT NOT NULL DEFAULT 0,
   `anonymous` BIT NOT NULL DEFAULT 0,
   `status` BIT NOT NULL DEFAULT 0,
-  `tags` VARCHAR(255) NOT NULL DEFAULT 0,
-  `ppid` INT NOT NULL DEFAULT 0,
+  `tags` VARCHAR(255) NULL,
+  `ppid` INT NULL,
+  `puserName` CHAR(35)  NULL,
+  `puid` INT NULL,
+  `photo` VARCHAR(255) NULL,
+
   PRIMARY KEY (`pid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;
@@ -72,13 +76,13 @@ DROP TABLE IF EXISTS `dada`.`forum_topic` ;
 CREATE TABLE IF NOT EXISTS `dada`.`forum_topic` (
   `tid` INT  NOT NULL AUTO_INCREMENT,
   `readPerm` INT  NOT NULL DEFAULT 0,
-  `authorName` CHAR(15) NOT NULL,
-  `authorId` INT  NOT NULL DEFAULT 0,
+  `userName` CHAR(35) NOT NULL,
+  `uid` INT  NOT NULL,
   `subject` CHAR(80) NOT NULL,
   `message` MEDIUMTEXT NOT NULL,
-  `dateLine` BIGINT  NOT NULL DEFAULT 0,
-  `lastPost` BIGINT  NOT NULL DEFAULT 0,
-  `lastPoster` CHAR(15) NOT NULL,
+  `dateLine` CHAR(20)  NOT NULL,
+  `lastPostDate` CHAR(20)  NOT NULL,
+  `lastPoster` CHAR(35) NOT NULL,
   `views` INT NOT NULL DEFAULT 0,
   `replies` INT  NOT NULL DEFAULT 0,
   `displayOrder` INT NOT NULL DEFAULT 0,
@@ -89,8 +93,8 @@ CREATE TABLE IF NOT EXISTS `dada`.`forum_topic` (
   `status` INT  NOT NULL DEFAULT 0,
   `favTimes` INT NOT NULL DEFAULT 0,
   `shareTimes` INT NOT NULL DEFAULT 0,
-  `stamp` INT NOT NULL DEFAULT -1,
-  `icon` INT NOT NULL DEFAULT -1,
+  `stamp` INT NULL,
+  `icon` INT NULL,
   PRIMARY KEY (`tid`))
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8;

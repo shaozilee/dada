@@ -2,7 +2,7 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT tid,readPerm,authorName,authorId,subject,message,dateLine,lastPost,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic
+ * SELECT tid,readPerm,userName,uid,subject,message,dateLine,lastPostDate,lastPoster,views,replies,displayOrder,highLight,digest,closed,stickReply,status,favTimes,shareTimes,stamp,icon FROM forum_topic
  *
  **/
 
@@ -10,12 +10,12 @@ package com.shaozilee.dada.pojo;
 public class ForumTopic {
 	public Integer tid;
 	public Integer readPerm;
-	public String authorName;
-	public Integer authorId;
+	public String userName;
+	public Integer uid;
 	public String subject;
 	public String message;
-	public Long dateLine;
-	public Long lastPost;
+	public String dateLine;
+	public String lastPostDate;
 	public String lastPoster;
 	public Integer views;
 	public Integer replies;
@@ -41,17 +41,17 @@ public class ForumTopic {
 	public Integer getReadPerm(){
 		return readPerm;
 	}
-	public void setAuthorName(String authorName){
-	this.authorName=authorName;
+	public void setUserName(String userName){
+	this.userName=userName;
 	}
-	public String getAuthorName(){
-		return authorName;
+	public String getUserName(){
+		return userName;
 	}
-	public void setAuthorId(Integer authorId){
-	this.authorId=authorId;
+	public void setUid(Integer uid){
+	this.uid=uid;
 	}
-	public Integer getAuthorId(){
-		return authorId;
+	public Integer getUid(){
+		return uid;
 	}
 	public void setSubject(String subject){
 	this.subject=subject;
@@ -65,17 +65,17 @@ public class ForumTopic {
 	public String getMessage(){
 		return message;
 	}
-	public void setDateLine(Long dateLine){
+	public void setDateLine(String dateLine){
 	this.dateLine=dateLine;
 	}
-	public Long getDateLine(){
+	public String getDateLine(){
 		return dateLine;
 	}
-	public void setLastPost(Long lastPost){
-	this.lastPost=lastPost;
+	public void setLastPostDate(String lastPostDate){
+	this.lastPostDate=lastPostDate;
 	}
-	public Long getLastPost(){
-		return lastPost;
+	public String getLastPostDate(){
+		return lastPostDate;
 	}
 	public void setLastPoster(String lastPoster){
 	this.lastPoster=lastPoster;

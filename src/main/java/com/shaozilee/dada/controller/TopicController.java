@@ -2,9 +2,9 @@ package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.PostDao;
 import com.shaozilee.dada.dao.TopicDao;
-import com.shaozilee.dada.pojo.CommonMember;
 import com.shaozilee.dada.pojo.ForumPost;
 import com.shaozilee.dada.pojo.ForumTopic;
+import com.shaozilee.dada.pojo.ForumUser;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -81,21 +82,17 @@ public class TopicController extends AbstractController{
     }
 
     @RequestMapping("/topic/save")
-    public void saveTopic(ForumPost f,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-        CommonMember member = (CommonMember)request.getSession().getAttribute("user");
-        Long time = new Date().getTime();
+    public void saveTopic(ForumTopic topic,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        ForumUser user = (ForumUser)request.getSession().getAttribute("user");
+        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
         TopicDao topicDao = TopicDao.getInstance();
-        ForumTopic topic = new ForumTopic();
-        topic.setAuthorId(member.getUid());
-        topic.setAuthorName(member.getUserName());
-        topic.setDateLine(time);
-        topic.setLastPost(time);
-        topic.setLastPoster(member.getUserName());
-        topic.setSubject(f.getSubject());
-        topic.setMessage(f.getMessage());
+        topic.setUid(user.getUid());
+        topic.setUserName(user.getUserName());
+        topic.setDateLine(date);
+        topic.setLastPostDate(date);
+        topic.setLastPoster(user.getUserName());
         topicDao.add(topic);
-
 
         String jsonStr = toJson(AjaxCode.SUC, response);
         logger.debug(jsonStr);
@@ -103,14 +100,14 @@ public class TopicController extends AbstractController{
 
     @RequestMapping("/post/save")
     public void savePost(ForumPost f,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-        CommonMember member = (CommonMember)request.getSession().getAttribute("user");
-        Long time = new Date().getTime();
+        ForumUser user = (ForumUser)request.getSession().getAttribute("user");
+        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
         PostDao postDao = PostDao.getInstance();
-        f.setDateLine(time);
-        f.setAuthorId(member.getUid());
-        f.setAuthorName(member.getUserName());
-        f.setSubject("");
+        f.setDateLine(date);
+        f.setUid(user.getUid());
+        f.setUserName(user.getUserName());
+        f.setPhoto(user.getPhoto());
 
         f = postDao.add(f);
 

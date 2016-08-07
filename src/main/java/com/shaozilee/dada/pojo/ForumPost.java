@@ -2,7 +2,7 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT pid,tid,authorName,authorId,subject,dateLine,message,useIp,invisible,anonymous,status,tags,ppid FROM forum_post
+ * SELECT pid,tid,userName,uid,dateLine,message,postIp,invisible,anonymous,status,tags,ppid,puserName,puid,photo FROM forum_post
  *
  **/
 
@@ -10,17 +10,19 @@ package com.shaozilee.dada.pojo;
 public class ForumPost {
 	public Integer pid;
 	public Integer tid;
-	public String authorName;
-	public Integer authorId;
-	public String subject;
-	public Long dateLine;
+	public String userName;
+	public Integer uid;
+	public String dateLine;
 	public String message;
-	public String useIp;
+	public String postIp;
 	public Boolean invisible;
 	public Boolean anonymous;
 	public Boolean status;
 	public String tags;
 	public Integer ppid;
+	public String puserName;
+	public Integer puid;
+	public String photo;
 	public void setPid(Integer pid){
 	this.pid=pid;
 	}
@@ -33,28 +35,22 @@ public class ForumPost {
 	public Integer getTid(){
 		return tid;
 	}
-	public void setAuthorName(String authorName){
-	this.authorName=authorName;
+	public void setUserName(String userName){
+	this.userName=userName;
 	}
-	public String getAuthorName(){
-		return authorName;
+	public String getUserName(){
+		return userName;
 	}
-	public void setAuthorId(Integer authorId){
-	this.authorId=authorId;
+	public void setUid(Integer uid){
+	this.uid=uid;
 	}
-	public Integer getAuthorId(){
-		return authorId;
+	public Integer getUid(){
+		return uid;
 	}
-	public void setSubject(String subject){
-	this.subject=subject;
-	}
-	public String getSubject(){
-		return subject;
-	}
-	public void setDateLine(Long dateLine){
+	public void setDateLine(String dateLine){
 	this.dateLine=dateLine;
 	}
-	public Long getDateLine(){
+	public String getDateLine(){
 		return dateLine;
 	}
 	public void setMessage(String message){
@@ -63,11 +59,11 @@ public class ForumPost {
 	public String getMessage(){
 		return message;
 	}
-	public void setUseIp(String useIp){
-	this.useIp=useIp;
+	public void setPostIp(String postIp){
+	this.postIp=postIp;
 	}
-	public String getUseIp(){
-		return useIp;
+	public String getPostIp(){
+		return postIp;
 	}
 	public void setInvisible(Boolean invisible){
 	this.invisible=invisible;
@@ -98,6 +94,24 @@ public class ForumPost {
 	}
 	public Integer getPpid(){
 		return ppid;
+	}
+	public void setPuserName(String puserName){
+	this.puserName=puserName;
+	}
+	public String getPuserName(){
+		return puserName;
+	}
+	public void setPuid(Integer puid){
+	this.puid=puid;
+	}
+	public Integer getPuid(){
+		return puid;
+	}
+	public void setPhoto(String photo){
+	this.photo=photo;
+	}
+	public String getPhoto(){
+		return photo;
 	}
 }
 

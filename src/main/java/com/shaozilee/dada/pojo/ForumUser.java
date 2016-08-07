@@ -2,22 +2,23 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginIp,lastLoginTime FROM common_member
+ * SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginTime,lastLoginIp,photo FROM forum_user
  *
  **/
 
 
-public class CommonMember {
+public class ForumUser {
 	public Integer uid;
 	public String userName;
 	public String password;
 	public String email;
 	public Boolean status;
 	public Boolean emailStatus;
-	public Long regDate;
+	public String regDate;
 	public Integer credits;
-	public Integer lastLoginIp;
-	public Long lastLoginTime;
+	public String lastLoginTime;
+	public String lastLoginIp;
+	public String photo;
 	public void setUid(Integer uid){
 	this.uid=uid;
 	}
@@ -54,10 +55,10 @@ public class CommonMember {
 	public Boolean getEmailStatus(){
 		return emailStatus;
 	}
-	public void setRegDate(Long regDate){
+	public void setRegDate(String regDate){
 	this.regDate=regDate;
 	}
-	public Long getRegDate(){
+	public String getRegDate(){
 		return regDate;
 	}
 	public void setCredits(Integer credits){
@@ -66,17 +67,23 @@ public class CommonMember {
 	public Integer getCredits(){
 		return credits;
 	}
-	public void setLastLoginIp(Integer lastLoginIp){
-	this.lastLoginIp=lastLoginIp;
-	}
-	public Integer getLastLoginIp(){
-		return lastLoginIp;
-	}
-	public void setLastLoginTime(Long lastLoginTime){
+	public void setLastLoginTime(String lastLoginTime){
 	this.lastLoginTime=lastLoginTime;
 	}
-	public Long getLastLoginTime(){
+	public String getLastLoginTime(){
 		return lastLoginTime;
+	}
+	public void setLastLoginIp(String lastLoginIp){
+	this.lastLoginIp=lastLoginIp;
+	}
+	public String getLastLoginIp(){
+		return lastLoginIp;
+	}
+	public void setPhoto(String photo){
+	this.photo=photo;
+	}
+	public String getPhoto(){
+		return photo;
 	}
 }
 
