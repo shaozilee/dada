@@ -52,6 +52,7 @@ $(function(){
         postUM.$container.find(".edui-editor-body").append(tipHtml);
         postUM.$container.find(".edui-body-container").css("text-indent",tipHtml.width());
 
+        postUM.execCommand('cleardoc');
 
     });
 
@@ -65,7 +66,7 @@ $(function(){
             puserName: post.data("username")
         };
         var ppostList = post.find(".post-post ul");
-        postUM.
+        postUM.execCommand('cleardoc');
 
         $.post(DA.ROOT+"/post/save.do", param, function (resp) {
             resp = JSON.parse(resp);
