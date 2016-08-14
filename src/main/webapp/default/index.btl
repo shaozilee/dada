@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>最新高清电影影评尽在www.dadania.com</title>
+    <title>最新高清电影尽在www.dadania.com</title>
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
   </head>
@@ -22,7 +22,7 @@
                 </li>
               <li></li>
               <li>总帖数:${totalCount}</li>
-              <li>今日共:100</li>
+              <li>今日共:${todayCount}</li>
             </ul>
             <div class="top-right">
               <a class="btn btn-new" href="topic/new.html" target="_blank">发布帖子</a>
@@ -35,7 +35,7 @@
                 <a href="topic-${topic.tid}-1.html">${topic.subject}</a>
               </div>
               <div class="other">
-                ${topic.userName},${topic.dateLine},${topic.views},${topic.replies}
+                ${topic.userName}<i class="zi"></i>${topic.dateLine}<i class="zi"></i>浏览${topic.views}次<i class="zi"></i>${topic.replies}条回复
               </div>
             </li>
             <% }%>

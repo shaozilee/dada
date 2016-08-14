@@ -44,6 +44,7 @@
 
 .post-list .post{
   position: relative;
+  margin-bottom: 12px;
 }
 
 .post-info{
@@ -121,4 +122,112 @@
   text-decoration: none;
 }
 
+.post-ta{
+  cursor: pointer;
+}
 
+.post-post{
+  margin-left: 50px;
+  border: 1px #d9d9d9 solid;
+  background-color: #fafafa;
+  border-radius: 2px;
+
+}
+
+.post-post.hidden{
+  display: none;
+}
+
+.post-post.active{
+  display: block;
+}
+
+.post-post>ul{
+  padding:10px 10px 0px 10px;
+}
+
+.post-post .puser{
+  float: left;
+  margin: 5px 0;
+}
+.post-post .pmessage{
+  float: left;
+}
+
+.post-post .pmessage p{
+  margin: 5px 0;
+}
+
+
+.post-editor{
+  display: none;
+  padding: 10px;
+}
+
+.post-editor-container{
+  position: relative;
+}
+
+.post-editor-container .edui-container{
+  box-shadow: none;
+}
+
+.post-editor-container .edui-toolbar{
+  display: none;
+}
+
+
+.post-editor-bottom{
+  margin-top: 10px;
+}
+
+.post-editor-bottom .left-box{
+  float: left;
+}
+
+.post-editor-bottom .right-box{
+  float: right;
+}
+
+.icon-ppost{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  vertical-align: -3px;
+  background: url("img/icon-ppost.png") no-repeat 50% 50%;
+}
+
+.ppost-btn{
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  padding: 0 10px;
+  background-color:#6E8BA6;
+}
+.ppost-btn:hover{
+  background-color:#2D8DBB;
+}
+
+.icon-ppost-face{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: -3px;
+  background: url("img/icon-ppost-face.png") no-repeat 50% 0;
+}
+
+.icon-ppost-face:hover{
+  background: url("img/icon-ppost-face.png") no-repeat 50% -20px;
+}
+
+.post-user-tip{
+  position: absolute;
+  left: 10px;
+  top: 0;
+  height: 24px;
+  line-height: 24px;
+  color: #666;
+  font-size: 14px;
+  z-index: 2;
+}

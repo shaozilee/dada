@@ -74,15 +74,22 @@ DA.error = function(msg,cb){
 };
 
 DA.tip = function(msg,cb,time){
+    time = time?time/1000:3;
     var box = $('<div class="da-box">' +
     '<div class="icon icon-yes"></div>' +
     '<div class="text" style="text-align: center;">' +
     msg+
-    '</div>' +
+    '(<span class="time">' +time+
+    '</span>)</div>' +
     '</div>');
     var pop = DA.pop(box,false);
-    setTimeout(function(){
+    setInterval(function(){
+        if(time>0){
+            time--;
+            box.find(".time").text(time);
+            return;
+        }
         pop.remove();
         cb&&cb();
-    },time?time:3000);
+    },1000);
 };

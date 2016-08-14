@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,31 +36,23 @@ public class TopicController extends AbstractController{
     private static Integer POST_PAGE_SIZE = 10;
 
     @RequestMapping("/index")
-    public String index(@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
-        Integer page = 1;
-        int totalCount = TopicDao.getInstance().getTotalCount();
-        int totalPage = (int)Math.ceil((double)totalCount / TOPIC_PAGE_SIZE);
-        model.addAttribute("totalCount",totalCount);
-        model.addAttribute("totalPage",totalPage);
-        model.addAttribute("hasPre",page>1?true:false);
-        model.addAttribute("hasNext",page<totalPage?true:false);
-        model.addAttribute("currentPage",page);
-
-        //获取第一页主题数据
-        List topicList = TopicDao.getInstance().getTopics(1,TOPIC_PAGE_SIZE);
-        model.addAttribute("topicList",topicList);
-        return api?debugAPI(model):"index";
+    public void index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        request.getRequestDispatcher("index-1.html").forward(request,response);
     }
 
     @RequestMapping("/index-{page}")
     public String indexByPage(@PathVariable Integer page,@RequestParam(value="api", required=false, defaultValue="false") boolean api, Model model) throws Exception{
         int totalCount = TopicDao.getInstance().getTotalCount();
+        int todayCount = TopicDao.getInstance().getTodayCount();
+
         int totalPage = (int)Math.ceil((double)totalCount / TOPIC_PAGE_SIZE);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
         model.addAttribute("hasNext",page<totalPage?true:false);
         model.addAttribute("currentPage",page);
+        model.addAttribute("todayCount",todayCount);
+
 
         //获取第一页主题数据
         List topicList = TopicDao.getInstance().getTopics(page, TOPIC_PAGE_SIZE);
@@ -68,10 +64,40 @@ public class TopicController extends AbstractController{
     public String topic(@PathVariable Integer tid, @PathVariable Integer page, @RequestParam(value="api", required=false, defaultValue="false") boolean api,Model model) throws Exception{
         Map topic = TopicDao.getInstance().getTopicByTid(tid);
         model.addAttribute("topic",topic);
+        model.addAttribute("tid",tid);
+        model.addAttribute("page",page);
 
+        //获取一级回复
         PostDao postDao = PostDao.getInstance();
         List list = postDao.getPostsByTid(tid, page,POST_PAGE_SIZE);
+        //组装子级回复的ppid
+        ArrayList<Integer> ppids = new ArrayList<Integer>();
+        Iterator<Map> iterator = list.iterator();
+        while(iterator.hasNext()){
+            ppids.add((Integer)iterator.next().get("pid"));
+        }
+        Map<String,ArrayList> ppMap = new HashMap<String,ArrayList>();
+        //如果没有一级回复则不处理
+        if(ppids.size()>0){
+            //获取所有的子级Post
+            List ppList = postDao.getPPostList(ppids);
+            Iterator<Map> iterator1 = ppList.iterator();
+            while(iterator1.hasNext()){
+                Map tempPPost = iterator1.next();
+                String tempPPid = tempPPost.get("ppid").toString();
+                ArrayList tempPPostList = null;
+                if(ppMap.containsKey(tempPPid)){
+                    tempPPostList = ppMap.get(tempPPid);
+                }else{
+                    tempPPostList = new ArrayList();
+                }
+                tempPPostList.add(tempPPost);
+                ppMap.put(tempPPid,tempPPostList);
+            }
+        }
+
         model.addAttribute("postList",list);
+        model.addAttribute("ppMap",ppMap);
         return api?debugAPI(model):"topic";
     }
 
@@ -83,6 +109,15 @@ public class TopicController extends AbstractController{
 
     @RequestMapping("/topic/save")
     public void saveTopic(ForumTopic topic,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        if(topic.getSubject() == null || "".equals(topic.getSubject())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+        if(topic.getMessage() == null || "".equals(topic.getMessage())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+
         ForumUser user = (ForumUser)request.getSession().getAttribute("user");
         String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
@@ -107,7 +142,6 @@ public class TopicController extends AbstractController{
         f.setDateLine(date);
         f.setUid(user.getUid());
         f.setUserName(user.getUserName());
-        f.setPhoto(user.getPhoto());
 
         f = postDao.add(f);
 

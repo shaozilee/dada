@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +78,26 @@ public class TopicDao {
         return totalCount;
     }
 
+    public Integer getTodayCount()throws SQLException{
+        Integer totalCount = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = new Date();
+        String startDate = simpleDateFormat.format(today)+" 00:00:00";
+        String endDate = simpleDateFormat.format(new Date(today.getTime()+24*60*60*1000))+" 00:00:00";
+
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT COUNT(tid) FROM forum_topic WHERE dateLine between ? and ?");
+        ps.setString(1,startDate);
+        ps.setString(2,endDate);
+        ResultSet rs = ps.executeQuery();
+        if(rs != null && rs.next()){
+            totalCount = rs.getInt(1);
+        }
+        con.close();
+        return totalCount;
+    }
+
+
     public Map getTopicByTid(Integer tid)throws  SQLException{
         Map topic = null;
         Connection con = DS.getConnection();
@@ -87,6 +110,22 @@ public class TopicDao {
         con.close();
         return topic;
     }
+
+
+    public Integer getPostCountByTid(Integer tid)throws SQLException{
+        Integer totalCount = 0;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT COUNT(pid) FROM forum_post WHERE tid = ?");
+        ps.setInt(1,tid);
+        ResultSet rs = ps.executeQuery();
+        if(rs != null && rs.next()){
+            totalCount = rs.getInt(1);
+        }
+        con.close();
+        return totalCount;
+    }
+
+
 
 
 

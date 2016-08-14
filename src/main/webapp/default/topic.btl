@@ -20,16 +20,44 @@
 
         <ul class="post-list" id="postList">
           <% for(post in postList){%>
-          <li class="post clearfix" id="post-${post.pid}">
+          <li class="post clearfix" id="post-${post.pid}" data-pid="${post.pid}" data-username="${post.userName}" data-uid="${post.uid}">
             <div class="post-info">
               <div class="photo"><img src="${ctxPath}/${theme}/images/default-master.jpg" alt=""/></div>
               <div class="mem">${post.userName}</div>
+
+              <div class="other"><a class="post-ta icon-ppost" data-pid="${post.pid}"></a></div>
               <div class="date">${post.dateLine}</div>
-              <div class="other"><a href="#replyText" class="post-ta" data-pid="${post.pid}" style="display: none;">回复TA</a></div>
             </div>
             <div class="post-message">
               ${post.message}
             </div>
+            <%
+            var ppList = ppMap[post.pid+""];
+            %>
+            <div class="post-post ${ (null!=ppList)?'show':'hidden' }">
+              <ul>
+                <%
+                if(null != ppList){
+                    for(pp in ppList){
+                %>
+                <li class="clearfix">
+                  <div class="puser">${pp.userName}:</div>
+                  <div class="pmessage">${pp.message}</div>
+                </li>
+                <%
+                }}
+                %>
+
+              </ul>
+              <div class="post-editor">
+                <div class="post-editor-container"></div>
+                <div class="post-editor-bottom clearfix">
+                  <div class="left-box"><a href="javascript:void(0);" class="icon-ppost-face"></a></div>
+                  <div class="right-box"><a class="btn ppost-btn" href="javascript:void(0);">发表</a></div>
+                </div>
+              </div>
+            </div>
+
           </li>
           <% }%>
         </ul>
@@ -37,10 +65,19 @@
         <div class="reply-box" data-tid="${topic.tid}" id="replyBox">
           <!--style给定宽度可以影响编辑器的最终宽度-->
           <script type="text/plain" id="replyText" style="width:1000px;min-height:120px;" >
-              <p>这里我可以写一些输入提示</p>
+              <p>
+              <% if(session.user == null){%>
+                请登录后再来评论！
+              <% }else{ %>
+                来了总得说点什么吧？
+              <% }%>
+              </p>
           </script>
 
         </div>
+
+        <script type="text/plain" id="postEditor" style="width:100%;min-height:20px;" ></script>
+
       </div>
     </div>
 
