@@ -2,11 +2,6 @@
   max-width:980px;
 }
 
-.edui-editor-body .edui-body-container{
-  color: #666;
-  font-size: 14px;
-}
-
 .topic-title h1{
   float: left;
   width: 580px;
@@ -131,7 +126,8 @@
   border: 1px #d9d9d9 solid;
   background-color: #fafafa;
   border-radius: 2px;
-
+  font-size: 12px;
+  color: #666;
 }
 
 .post-post.hidden{
@@ -149,9 +145,21 @@
 .post-post .puser{
   float: left;
   margin: 5px 0;
+  color: #333;
+}
+
+.post-post .puser .uname{
+  display: inline-block;
+  max-width: 6em;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  vertical-align: text-bottom;
+  white-space: nowrap;
 }
 .post-post .pmessage{
   float: left;
+  color: #666;
+  max-width: 590px;
 }
 
 .post-post .pmessage p{
@@ -166,14 +174,22 @@
 
 .post-editor-container{
   position: relative;
+  border: 1px solid #d4d4d4;
+  background-color: #fff;
 }
 
 .post-editor-container .edui-container{
   box-shadow: none;
+  border: none;
 }
 
 .post-editor-container .edui-toolbar{
   display: none;
+}
+
+.post-editor-container .edui-editor-body .edui-body-container{
+  font-size: 12px;
+  color:#333;
 }
 
 
@@ -225,9 +241,17 @@
   position: absolute;
   left: 10px;
   top: 0;
-  height: 24px;
-  line-height: 24px;
-  color: #666;
-  font-size: 14px;
-  z-index: 2;
+  height: 28px;
+  line-height: 28px;
+  z-index: 1000;
+}
+
+.ppost-ta{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.ppost-date{
+  padding-left: 5px;
+  color: #ccc;
 }

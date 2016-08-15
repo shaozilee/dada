@@ -40,9 +40,14 @@
                 if(null != ppList){
                     for(pp in ppList){
                 %>
-                <li class="clearfix">
-                  <div class="puser">${pp.userName}:</div>
+                <li class="clearfix" id="post-${pp.pid}" data-pid="${pp.pid}" data-username="${pp.userName}" data-uid="${pp.uid}">
+                  <div class="puser">
+                    <span class="uname">${pp.userName}</span>
+                    ${ (pp.puid != post.uid)?("&nbsp;回复&nbsp;<span class='uname'>"+pp.puserName+"</span>"):""}：
+                  </div>
                   <div class="pmessage">${pp.message}</div>
+                  <span class="ppost-date">${pp.dateLine}</span>
+                  <a class="post-ta icon-ppost ppost-ta" data-pid="${pp.pid}"></a>
                 </li>
                 <%
                 }}

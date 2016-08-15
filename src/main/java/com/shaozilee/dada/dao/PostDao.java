@@ -45,7 +45,7 @@ public class PostDao {
         ps.setString(5, post.getMessage());
         if(ppid != null){
             ps.setInt(6,ppid);
-            ps.setString(7, post.getUserName());
+            ps.setString(7, post.getPuserName());
             ps.setInt(8,post.getPuid());
         }
 
