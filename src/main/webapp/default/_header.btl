@@ -1,5 +1,9 @@
 <div class="header">
   <div class="header-wrap clearfix">
-    <div class="header-logo"><a class="da-logo" href="${ctxPath}/index.html" target="_blank"></a></div>
+    <div class="header-logo">
+      <a href="${ctxPath}/index.html" target="_blank">
+        <img src="${ctxPath}/${theme}/images/logo.png" alt="" height="100px"/>
+      </a>
+    </div>
   </div>
 </div>
