@@ -57,7 +57,6 @@
               <div class="post-editor">
                 <div class="post-editor-container"></div>
                 <div class="post-editor-bottom clearfix">
-                  <div class="left-box"><a href="javascript:void(0);" class="icon-ppost-face"></a></div>
                   <div class="right-box"><a class="btn ppost-btn" href="javascript:void(0);">发表</a></div>
                 </div>
               </div>

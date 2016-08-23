@@ -3,7 +3,7 @@
  */
 $(function(){
     var um = UM.getEditor('replyText',{autoClearinitialContent:true});
-    var postUM = UM.getEditor('postEditor',{isShow:false,toolbars:null,initialStyle:'.edui-editor-body .edui-body-container p{line-height:1.5}'});
+    var postUM = UM.getEditor('postEditor',{isShow:false,toolbar:["emotion"],initialStyle:'.edui-editor-body .edui-body-container p{line-height:1.5}'});
 
     $("#replyBox .edui-btn-toolbar").append("<a class='submit-btn'>发表回复</a>");
 
@@ -56,6 +56,7 @@ $(function(){
         postUM.$container.appendTo(ppEditorContainer);
         postUM.setWidth(ppEditorContainer.width());
         postUM.setShow();
+        postUM.$container.find(".edui-toolbar").css("left",(-1*tipHtml.width())+"px");
         postUM.execCommand('cleardoc');
 
     });
@@ -97,6 +98,10 @@ $(function(){
         });
 
 
+    });
+
+    $("body").delegate(".icon-ppost-face","click",function(){
+        postUM.execCommand("emotion");
     });
 
 
