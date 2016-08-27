@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>您无限访问本页面</title>
+  <% include("_common.btl"){} %>
+</head>
+<body>
+<% include("_header.btl"){} %>
+<div style="padding-top:40px;text-align:center;">
+  <img src="${ctxPath}/${theme}/images/403.jpg">
+</div>
+</body>
+</html>

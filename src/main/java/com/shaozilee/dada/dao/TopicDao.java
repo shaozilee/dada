@@ -33,7 +33,7 @@ public class TopicDao {
         int start = (pageNum-1)*pageSize;
         List list = new ArrayList();
         Connection con = DS.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM forum_topic ORDER BY tid DESC LIMIT ?,?");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM forum_topic ORDER BY lastPostDate DESC LIMIT ?,?");
         ps.setInt(1,start);
         ps.setInt(2,pageSize);
         ResultSet rs = ps.executeQuery();
@@ -125,6 +125,19 @@ public class TopicDao {
         return totalCount;
     }
 
+    public Boolean update(ForumTopic topic) throws SQLException {
+        Connection con = DS.getConnection();
+        String sql = "UPDATE forum_topic SET subject=?,message=?,lastPostDate=?,lastPoster=? WHERE tid=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, topic.getSubject());
+        ps.setString(2,topic.getMessage());
+        ps.setString(3,topic.getLastPostDate());
+        ps.setString(4, topic.getLastPoster());
+        ps.setInt(5, topic.getTid());
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
 
 
 

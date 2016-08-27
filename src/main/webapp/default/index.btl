@@ -32,10 +32,10 @@
             <% for(topic in topicList){%>
             <li>
               <div class="subject">
-                <a href="topic-${topic.tid}-1.html">${topic.subject}</a>
+                <a href="topic-${topic.tid}-1.html" target="_blank">${topic.subject}</a>
               </div>
               <div class="other">
-                ${topic.userName}<i class="zi"></i>${topic.dateLine}<i class="zi"></i>浏览${topic.views}次<i class="zi"></i>${topic.replies}条回复
+                ${topic.userName}<i class="zi"></i>${topic.lastPostDate}<i class="zi"></i>浏览${topic.views}次<i class="zi"></i>${topic.replies}条回复
               </div>
             </li>
             <% }%>

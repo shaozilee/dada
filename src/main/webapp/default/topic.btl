@@ -14,7 +14,11 @@
           <h1>${topic.subject}</h1>
         </div>
         <div class="topic">
-          <div class="topic-top">${topic.userName}发表于${topic.dateLine}</div>
+          <div class="topic-top clearfix">
+            <div class="left">${topic.userName}发表于${topic.lastPostDate}</div>
+            <div class="right">
+              <% if(session.user != null && session.user.userName == topic.userName){ %><a class="topic-edit-btn" href="edit-topic-${topic.tid}.html" target="_blank">编辑</a><% } %>
+            </div></div>
           <div class="topic-body">${topic.message}</div>
         </div>
 

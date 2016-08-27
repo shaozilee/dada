@@ -1,0 +1,12 @@
+wget jdk
+tar zxvf jdk.tar.gz
+
+
+
+
+
+yum install openjdk
+yum install crontabs
+service crond start
+service crond status
+chkconfig –-level 35 crond on

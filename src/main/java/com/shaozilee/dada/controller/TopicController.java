@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -150,7 +149,44 @@ public class TopicController extends AbstractController{
     }
 
 
+    @RequestMapping("/edit-topic-{tid}")
+    public String topic(@PathVariable Integer tid, @RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception {
+        Map topic = TopicDao.getInstance().getTopicByTid(tid);
+        ForumUser user = (ForumUser)request.getSession().getAttribute("user");
+        String url = "edit-topic";
+        if(user != null && topic != null && user.getUid() == (Integer)topic.get("uid")){
+            model.addAttribute("topic", topic);
+        }else{
+            url = "403";
+        }
+
+        //获取一级回复
+        return api?debugAPI(model):url;
+    }
 
 
+    @RequestMapping("/topic/edit")
+    public void editTopic(ForumTopic topic,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+        if(topic.getSubject() == null || "".equals(topic.getSubject())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+        if(topic.getMessage() == null || "".equals(topic.getMessage())){
+            toJson(AjaxCode.ERR_NULL, response);
+            return;
+        }
+
+        ForumUser user = (ForumUser)request.getSession().getAttribute("user");
+        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+
+        TopicDao topicDao = TopicDao.getInstance();
+        topic.setUid(user.getUid());
+        topic.setLastPostDate(date);
+        topic.setLastPoster(user.getUserName());
+        topicDao.update(topic);
+
+        String jsonStr = toJson(AjaxCode.SUC, response);
+        logger.debug(jsonStr);
+    }
 
 }

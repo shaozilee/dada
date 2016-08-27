@@ -4,7 +4,7 @@
 
 .topic-title h1{
   float: left;
-  width: 580px;
+  width: 100%;
   line-height: 35px;
   overflow: hidden;
   font-size: 24px;
@@ -14,12 +14,25 @@
 
 .topic .topic-top{
   border-bottom: #e2e2e2 solid 1px;
+}
+
+.topic .topic-top .left{
+  float: left;
   height: 50px;
   line-height: 50px;
   padding-left: 10px;
   color: #999;
   font-size: 12px;
 }
+
+.topic .topic-top .right{
+  float: right;
+  padding-right: 20px;
+  height: 50px;
+  line-height: 50px;
+}
+
+
 
 .topic .topic-body{
   padding: 0px 10px;
@@ -268,4 +281,8 @@
   height: 32px;
   line-height: 32px;
   color: #ccc;
+}
+
+.topic-edit-btn{
+
 }
