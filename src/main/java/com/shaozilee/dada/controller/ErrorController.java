@@ -17,7 +17,17 @@ public class ErrorController {
      * @return
      */
     @RequestMapping("/404")
-    public String error(Model model) {
+    public String error404(Model model) {
         return "404";
+    }
+
+    /**
+     * 禁止访问
+     * @param model
+     * @return
+     */
+    @RequestMapping("/403")
+    public String error403(Model model) {
+        return "403";
     }
 }
