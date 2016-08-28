@@ -4,6 +4,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.FileUploadBase.InvalidContentTypeException;
 import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
@@ -14,6 +16,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
 import sun.misc.BASE64Decoder;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -95,6 +98,13 @@ public class Uploader {
                     this.size = file.length();
                     this.absolutePath = file.getAbsolutePath();
                     //UE中只会处理单张上传，完成后即退出
+                    try{
+                        if(this.size>400*1024){
+                            Thumbnails.of(file).scale(1).outputQuality(0.5).toFile(file);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     break;
                 } else {
                     String fname = fis.getFieldName();
