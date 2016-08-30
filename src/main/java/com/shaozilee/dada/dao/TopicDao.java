@@ -139,7 +139,24 @@ public class TopicDao {
         return rows>0;
     }
 
+    public Boolean increaseReplies(Integer tid) throws SQLException {
+        Connection con = DS.getConnection();
+        String sql = "UPDATE forum_topic SET replies=replies+1 WHERE tid=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1,tid);
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
 
-
+    public Boolean increaseViews(Integer tid) throws SQLException {
+        Connection con = DS.getConnection();
+        String sql = "UPDATE forum_topic SET views=views+1 WHERE tid=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1,tid);
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
 
 }

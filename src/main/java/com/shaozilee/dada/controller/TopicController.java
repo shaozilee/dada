@@ -62,6 +62,8 @@ public class TopicController extends AbstractController{
     @RequestMapping("/topic-{tid}-{page}")
     public String topic(@PathVariable Integer tid, @PathVariable Integer page, @RequestParam(value="api", required=false, defaultValue="false") boolean api,Model model) throws Exception{
         Map topic = TopicDao.getInstance().getTopicByTid(tid);
+        TopicDao.getInstance().increaseViews(tid);
+
         model.addAttribute("topic",topic);
         model.addAttribute("tid",tid);
         model.addAttribute("page",page);
@@ -118,7 +120,7 @@ public class TopicController extends AbstractController{
         }
 
         ForumUser user = (ForumUser)request.getSession().getAttribute("user");
-        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         TopicDao topicDao = TopicDao.getInstance();
         topic.setUid(user.getUid());
@@ -135,7 +137,7 @@ public class TopicController extends AbstractController{
     @RequestMapping("/post/save")
     public void savePost(ForumPost f,@RequestParam(value="api", required=false, defaultValue="false") boolean api,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         ForumUser user = (ForumUser)request.getSession().getAttribute("user");
-        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         PostDao postDao = PostDao.getInstance();
         f.setDateLine(date);
@@ -143,6 +145,9 @@ public class TopicController extends AbstractController{
         f.setUserName(user.getUserName());
 
         f = postDao.add(f);
+        if(f != null){
+            TopicDao.getInstance().increaseReplies(f.getTid());
+        }
 
         String jsonStr = toJson(f,AjaxCode.SUC, response);
         logger.debug(jsonStr);
@@ -177,7 +182,7 @@ public class TopicController extends AbstractController{
         }
 
         ForumUser user = (ForumUser)request.getSession().getAttribute("user");
-        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         TopicDao topicDao = TopicDao.getInstance();
         topic.setUid(user.getUid());

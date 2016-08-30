@@ -104,7 +104,7 @@ public class MemberController extends AbstractController{
         }
 
         //do save
-        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         user.setRegDate(date);
         try{
             user = userDao.add(user);
