@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>重新编辑帖子</title>
+    <title>重新编辑帖子-大大尼昂社区</title>
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/new.css">

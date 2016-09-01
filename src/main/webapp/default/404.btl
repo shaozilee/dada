@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Easy API Platform</title>
+    <title>您访问的页面不存在-大大尼昂社区</title>
     <% include("_common.btl"){} %>
   </head>
   <body>

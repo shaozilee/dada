@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>${topic.subject}-www.dadania.com</title>
+    <title>${topic.subject}-大大尼昂社区</title>
+    <meta name="keywords" content="${topic.subject}高清下载,${topic.subject}种子下载,${topic.subject}迅雷下载,最新高清电影下载,电视剧全集,迅雷下载,种子下载,影视资源分享下载,大大尼昂,dadania.com">
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/topic.css">
