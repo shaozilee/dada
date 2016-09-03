@@ -68,8 +68,18 @@ public class TopicController extends AbstractController{
         model.addAttribute("tid",tid);
         model.addAttribute("page",page);
 
-        //获取一级回复
         PostDao postDao = PostDao.getInstance();
+        //获取一级回复的计数
+        int totalCount = postDao.getPostTotalCount(tid,false);
+        int totalCount1 = postDao.getPostTotalCount(tid, true);
+
+        int totalPage = (int)Math.ceil((double)totalCount1 / POST_PAGE_SIZE);
+        model.addAttribute("totalCount",totalCount);
+        model.addAttribute("totalPage",totalPage);
+        model.addAttribute("hasPre",page>1?true:false);
+        model.addAttribute("hasNext",page<totalPage?true:false);
+        model.addAttribute("currentPage",page);
+        //获取一级回复
         List list = postDao.getPostsByTid(tid, page,POST_PAGE_SIZE);
         //组装子级回复的ppid
         ArrayList<Integer> ppids = new ArrayList<Integer>();

@@ -107,4 +107,23 @@ public class PostDao {
     }
 
 
+    public int getPostTotalCount(Integer tid,Boolean isLevel1)throws SQLException{
+        int total = 0;
+        Connection con = DS.getConnection();
+        String sql = "SELECT count(pid) FROM forum_post  WHERE tid=?";
+        if(isLevel1){
+            sql = "SELECT count(pid) FROM forum_post  WHERE tid=? AND ppid IS NULL";
+        }
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1,tid);
+        ResultSet resultSet = ps.executeQuery();
+        if(resultSet.next()){
+            total = resultSet.getInt(1);
+        }
+        con.close();
+        return total;
+    }
+
+
 }

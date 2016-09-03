@@ -54,7 +54,12 @@
 
               for(var i=start;i<=end;i++){%>
               <li class="${i==currentPage?'selected':''}"><a href="index-${i}.html" target="_blank">${i}</a></li>
-              <% }%>
+              <% }
+
+              if(totalPage==0){
+              %>
+              <li class="selected"><a href="index-1.html" target="_blank">1</a></li>
+              <%}%>
 
               <li class="next ${hasNext?'':'disable'}"><a href="${hasNext?'index-'+(currentPage+1)+'.html':'javascript:void(0);'}">&gt;</a></li>
               <li class="last"><a href="index-${totalPage}.html">末页</a></li>
