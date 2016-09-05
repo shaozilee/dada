@@ -6,3 +6,14 @@
     };
 </script>
 <script type="text/javascript" src="${ctxPath}/${theme}/js/common.js"></script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f95c45b8263a4c36fd01d244789f4a9c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
