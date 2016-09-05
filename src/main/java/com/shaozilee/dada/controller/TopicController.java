@@ -45,6 +45,9 @@ public class TopicController extends AbstractController{
         int todayCount = TopicDao.getInstance().getTodayCount();
 
         int totalPage = (int)Math.ceil((double)totalCount / TOPIC_PAGE_SIZE);
+        if(totalPage<=0){
+            totalPage = 1;
+        }
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
@@ -74,6 +77,9 @@ public class TopicController extends AbstractController{
         int totalCount1 = postDao.getPostTotalCount(tid, true);
 
         int totalPage = (int)Math.ceil((double)totalCount1 / POST_PAGE_SIZE);
+        if(totalPage<=0){
+            totalPage = 1;
+        }
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("hasPre",page>1?true:false);
