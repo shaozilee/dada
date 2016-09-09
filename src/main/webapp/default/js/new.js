@@ -2,7 +2,7 @@
  * Created by lee on 2016/5/16.
  */
 $(function(){
-    var um = UM.getEditor('myEditor');
+    var um = UE.getEditor('myEditor');
 
     $(".edui-btn-toolbar").append("<a class='submit-btn'>提交发布</a>");
 

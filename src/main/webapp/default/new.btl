@@ -24,15 +24,22 @@
     </div>
     <% include("_footer.btl"){} %>
     <% include("_commonjs.btl"){} %>
-    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.config.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue1433/ueditor.config.js"></script>
+
+
     <script type="text/javascript">
-        window.UMEDITOR_CONFIG.toolbar = [
+      /**
+      window.UMEDITOR_CONFIG.toolbar = [
             'bold backcolor justifyleft justifycenter justifyright justifyjustify',
-            'link unlink emotion image video'
+            'link unlink emotion image video attachment',
+            'drafts'
         ]
+      **/
     </script>
-    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue/umeditor.js"> </script>
-    <script type="text/javascript" src="${ctxPath}/${theme}/js/ue/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue1433/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue1433/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript" src="${ctxPath}/${theme}/js/new.js"></script>
 
   </body>
