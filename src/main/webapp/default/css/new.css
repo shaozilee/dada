@@ -19,17 +19,13 @@
   outline: none;
 }
 
-.edui-container{
+.editor .edui-default .edui-editor{
   border: none;
   box-shadow:none;
 }
 
 .edui-editor-body{
   padding-top: 10px;
-}
-
-.edui-container .um-img{
-max-width:980px;
 }
 
 .submit-btn{

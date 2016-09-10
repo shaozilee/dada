@@ -11,6 +11,8 @@
 
   <mvc:annotation-driven></mvc:annotation-driven>
 
+  <mvc:resources mapping="/default/js/**" location="/default/js/" />
+
   <bean name="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
     <property name="configFileResource" value="/WEB-INF/beetl.properties"/>
     <property name="sharedVars">

@@ -3,7 +3,6 @@
   <head>
     <title>发布新帖子-大大尼昂社区</title>
     <% include("_common.btl"){} %>
-    <link rel="stylesheet" href="${ctxPath}/${theme}/js/ue/themes/default/css/umeditor.css">
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/new.css">
 
   </head>
@@ -26,16 +25,12 @@
     <% include("_commonjs.btl"){} %>
 
     <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue1433/ueditor.config.js"></script>
-
-
     <script type="text/javascript">
-      /**
-      window.UMEDITOR_CONFIG.toolbar = [
-            'bold backcolor justifyleft justifycenter justifyright justifyjustify',
-            'link unlink emotion image video attachment',
-            'drafts'
-        ]
-      **/
+      window.UEDITOR_CONFIG.toolbars =[[
+        'bold', 'removeformat', 'backcolor', 'justifyleft', 'justifycenter', 'justifyright',
+        'link', 'unlink', 'simpleupload', 'insertimage', 'emotion', 'attachment','drafts'
+      ]]
+
     </script>
 
     <script type="text/javascript" charset="utf-8" src="${ctxPath}/${theme}/js/ue1433/ueditor.all.min.js"></script>
