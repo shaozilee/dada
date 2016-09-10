@@ -196,7 +196,7 @@
   border: none;
 }
 
-.post-editor-container .edui-toolbar{
+.post-editor-container .edui-default .edui-editor-toolbarbox{
   position: absolute;
   bottom: -38px;
   left: 0px;
@@ -204,7 +204,13 @@
   box-shadow: none;
 }
 
-.post-editor-container .edui-toolbar .edui-icon-emotion{
+.post-editor-container .edui-default .edui-editor-toolbarboxouter{
+  border:none;
+  background:none;
+  box-shadow: none;
+}
+
+.post-editor-container .edui-default .edui-editor-toolbarbox .edui-for-emotion .edui-icon{
   background: url("img/icon-ppost-face.png") no-repeat 50% 0;
 }
 

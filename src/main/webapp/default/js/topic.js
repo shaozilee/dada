@@ -2,39 +2,45 @@
  * Created by lee on 2016/5/16.
  */
 $(function(){
-    var um = UM.getEditor('replyText',{autoClearinitialContent:true});
-    var postUM = UM.getEditor('postEditor',{isShow:false,toolbar:["emotion"],initialStyle:'.edui-editor-body .edui-body-container p{line-height:1.5}'});
 
-    $("#replyBox .edui-btn-toolbar").append("<a class='submit-btn'>发表回复</a>");
+    var um = UE.getEditor('replyText',{autoClearinitialContent:true});
+    var postUM = UE.getEditor('postEditor',{toolbars:[['emotion']],lineheight:"1.5"});
 
-    $(".submit-btn").click(function(){
-        var replyBox = $("#replyBox");
-        var param = {
-            tid:replyBox.data("tid"),
-            message: um.getContent()
-        };
+    um.ready(function(){
 
-        $.post(DA.ROOT+"/post/save.do", param, function (resp) {
-            resp = JSON.parse(resp);
-            if(resp.code === "0000"){
-                var href = window.location.href;
-                href = href.substring(0,href.indexOf(".html"));
-                href = href.substring(0,href.lastIndexOf("-"))+"-1.html#postList";
-                window.location.href = href;
-                window.location.reload(true);
-            }else{
-                DA.error(resp.msg);
-            }
+        $("#replyBox .edui-toolbar").append("<a class='submit-btn'>发表回复</a>");
+
+        $(".submit-btn").click(function(){
+            var replyBox = $("#replyBox");
+            var param = {
+                tid:replyBox.data("tid"),
+                message: um.getContent()
+            };
+
+            $.post(DA.ROOT+"/post/save.do", param, function (resp) {
+                resp = JSON.parse(resp);
+                if(resp.code === "0000"){
+                    var href = window.location.href;
+                    href = href.substring(0,href.indexOf(".html"));
+                    href = href.substring(0,href.lastIndexOf("-"))+"-1.html#postList";
+                    window.location.href = href;
+                    window.location.reload(true);
+                }else{
+                    DA.error(resp.msg);
+                }
+            });
         });
     });
 
 
-    $("body").delegate(".post-ta","click",function(){
-        postUM.$container.parents(".post-editor").css("display","none");
-        postUM.$container.parents(".post-editor").find(".post-user-tip").remove();
 
-        if(postUM.$container.parents(".post-post").find("li").length<=0){
-            postUM.$container.parents(".post-post").removeClass("active");
+    $("body").delegate(".post-ta","click",function(){
+        var container = $(postUM.container);
+        container.parents(".post-editor").css("display","none");
+        container.parents(".post-editor").find(".post-user-tip").remove();
+
+        if(container.parents(".post-post").find("li").length<=0){
+            container.parents(".post-post").removeClass("active");
         }
 
 
@@ -52,11 +58,7 @@ $(function(){
         var tipHtml = $("<div class='post-user-tip'>回复 "+puserName+"：</div>");
         ppEditorContainer.append(tipHtml);
         ppEditorContainer.css("padding-left",tipHtml.width());
-
-        postUM.$container.appendTo(ppEditorContainer);
-        postUM.setWidth(ppEditorContainer.width());
-        postUM.setShow();
-        postUM.$container.find(".edui-toolbar").css("left",(-1*tipHtml.width())+"px");
+        container.appendTo(ppEditorContainer);
         postUM.execCommand('cleardoc');
 
     });
