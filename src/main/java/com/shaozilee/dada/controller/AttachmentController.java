@@ -27,14 +27,7 @@ public class AttachmentController extends AbstractController{
     @RequestMapping("/upload")
     public void doUpload(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
         String rootPath = request.getServletContext().getRealPath("/");
-        logger.debug("rootPath:"+rootPath);
-        logger.debug("request.getContextPath():"+request.getContextPath());
-        logger.debug("request.getRequestURI():"+request.getRequestURI());
-
-        logger.debug("originalPath:"+ rootPath + request.getRequestURI().substring( request.getContextPath().length() ));
-
         String result = new ActionEnter( request, rootPath ).exec();
-        logger.debug("result:"+result);
         response.getWriter().write(result);
         response.getWriter().close();
 
