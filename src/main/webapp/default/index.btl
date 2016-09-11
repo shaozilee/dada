@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>最新高清电影下载种子迅雷尽在www.dadania.com-大大尼昂社区</title>
+    <meta name="baidu-site-verification" content="SG6KYSHiJU" />
     <% include("_common.btl"){} %>
     <link rel="stylesheet" href="${ctxPath}/${theme}/css/index.css">
   </head>
