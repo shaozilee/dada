@@ -214,6 +214,20 @@
   background: url("img/icon-ppost-face.png") no-repeat 50% 0;
 }
 
+.post-editor-container .edui-default .edui-editor-toolbarbox .edui-for-emotion .edui-state-hover .edui-icon{
+  background: url("img/icon-ppost-face.png") no-repeat 50% -20px;
+}
+
+.post-editor-container .edui-default .edui-editor-toolbarbox .edui-splitbutton  .edui-state-hover .edui-splitbutton-body{
+  background: none;
+  border: none;
+}
+
+.post-editor-container .edui-default .edui-editor-toolbarbox  .edui-state-opened .edui-splitbutton-body{
+  background: none;
+  border: none;
+}
+
 
 
 

@@ -3,8 +3,8 @@
  */
 $(function(){
 
-    var um = UE.getEditor('replyText',{autoClearinitialContent:true});
-    var postUM = UE.getEditor('postEditor',{toolbars:[['emotion']],lineheight:"1.5"});
+    var um = UE.getEditor('replyText',{autoFloatEnabled:false,autoClearinitialContent:true,enableAutoSave:false,autoSyncData:false});
+    var postUM = UE.getEditor('postEditor',{autoFloatEnabled:false,toolbars:[['emotion']],lineheight:"1.5",enableAutoSave:false,autoSyncData:false});
 
     um.ready(function(){
 
@@ -35,6 +35,7 @@ $(function(){
 
 
     $("body").delegate(".post-ta","click",function(){
+        console.log("11111");
         var container = $(postUM.container);
         container.parents(".post-editor").css("display","none");
         container.parents(".post-editor").find(".post-user-tip").remove();
@@ -43,7 +44,7 @@ $(function(){
             container.parents(".post-post").removeClass("active");
         }
 
-
+        console.log("22222");
         var ppid = $(this).data("pid");
         var post = $("#post-"+ppid);
         var puserName = post.data("username");
@@ -53,13 +54,15 @@ $(function(){
         post.find(".post-post").addClass("active");
         post.find(".post-editor").css("display","block");
         post.find(".ppost-btn").data("pid",ppid);
-
+        console.log("33333");
         var ppEditorContainer = post.find(".post-editor-container");
         var tipHtml = $("<div class='post-user-tip'>回复 "+puserName+"：</div>");
         ppEditorContainer.append(tipHtml);
         ppEditorContainer.css("padding-left",tipHtml.width());
         container.appendTo(ppEditorContainer);
-        postUM.execCommand('cleardoc');
+        console.log("4444");
+        //postUM.execCommand('cleardoc');
+        console.log("55555");
 
     });
 
@@ -74,7 +77,7 @@ $(function(){
             puid: ppost.data("uid"),
             puserName: ppost.data("username")
         };
-        postUM.execCommand('cleardoc');
+        //postUM.execCommand('cleardoc');
 
         var ppostList = post.find(".post-post ul");
         $.post(DA.ROOT+"/post/save.do", param, function (resp) {
