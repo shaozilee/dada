@@ -70,11 +70,8 @@
     $focus($G("href"));
 
     function handleDialogOk(){
-        var href =$G('href').value.replace(/^\s+|\s+$/g, '');
+        var href =$G('href').value;
         if(href){
-            if(!hrefStartWith(href,["http","/","ftp://",'#'])) {
-                href  = "http://" + href;
-            }
             var obj = {
                 'href' : href,
                 'target' : $G("target").checked ? "_blank" : '_self',
@@ -100,13 +97,6 @@
         if (evt.keyCode == 13) {
             handleDialogOk();
             return false;
-        }
-    };
-    $G('href').onblur = function(){
-        if(!hrefStartWith(this.value,["http","/","ftp://",'#'])){
-            $G("msg").innerHTML = "<span style='color: red'>"+lang.httpPrompt+"</span>";
-        }else{
-            $G("msg").innerHTML = "";
         }
     };
 
