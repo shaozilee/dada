@@ -2,7 +2,7 @@ package com.shaozilee.dada.pojo;
 
 /**
  *
- * SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginTime,lastLoginIp,photo FROM forum_user
+ * SELECT uid,userName,password,email,status,emailStatus,regDate,credits,lastLoginTime,lastLoginIp,photo,points FROM forum_user
  *
  **/
 
@@ -19,6 +19,7 @@ public class ForumUser {
 	public String lastLoginTime;
 	public String lastLoginIp;
 	public String photo;
+	public Integer points;
 	public void setUid(Integer uid){
 	this.uid=uid;
 	}
@@ -84,6 +85,12 @@ public class ForumUser {
 	}
 	public String getPhoto(){
 		return photo;
+	}
+	public void setPoints(Integer points){
+	this.points=points;
+	}
+	public Integer getPoints(){
+		return points;
 	}
 }
 

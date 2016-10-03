@@ -93,3 +93,21 @@ DA.tip = function(msg,cb,time){
         cb&&cb();
     },1000);
 };
+
+var colorMap = {i:0};
+DA.renderTag = function(){
+    var subject = $(this).text();
+    subject = subject.replace(/\[(.*?)\]/g,'<span class="tag">$1</span>');
+    $(this).html(subject);
+    $(this).find(".tag").each(function(){
+        var $this = $(this);
+        var key  = $this.text();
+        var val = colorMap[key];
+        if(!val){
+            colorMap.i++;
+            val = "tag"+(colorMap.i);
+            colorMap[key] = val;
+        }
+        $this.addClass(val);
+    });
+};

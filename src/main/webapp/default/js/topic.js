@@ -111,3 +111,5 @@ $(function(){
 
 
 });
+
+$(".topic-title h1").each(DA.renderTag);

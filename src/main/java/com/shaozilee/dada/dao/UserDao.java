@@ -69,5 +69,25 @@ public class UserDao {
         return user;
     }
 
+    public boolean addPoints(Integer uid,Integer points) throws SQLException{
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("UPDATE forum_user SET points=points+? WHERE uid=?");
+        ps.setInt(1,points);
+        ps.setInt(2,uid);
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
+
+    public boolean addCredits(Integer uid,Integer credits) throws SQLException{
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("UPDATE forum_user SET credits=credits+? WHERE uid=?");
+        ps.setInt(1,credits);
+        ps.setInt(2,uid);
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
+
 
 }
