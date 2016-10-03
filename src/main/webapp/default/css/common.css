@@ -629,10 +629,10 @@ a:hover {
   background: #ccc;
   font-size: 0.7em;
   color: #FFF;
-  margin-right: 10px;
+  margin-right: 6px;
   border-radius: 0.7em;
   overflow: hidden;
-  vertical-align: 2px;
+  vertical-align: 1px;
 }
 
 .tag1{

@@ -4,6 +4,7 @@
 
 .subject{
   margin-bottom: 10px;
+  position: relative;
 }
 
 .subject-input{
@@ -42,4 +43,14 @@
 .submit-btn:hover{
   background: #ff8a00;
   color: #FFF;
+}
+
+.subject .tip{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 35px;
+  line-height: 35px;
+  color: #ccc;
+  font-size: 14px;
 }

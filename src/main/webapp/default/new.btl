@@ -11,7 +11,12 @@
     <div class="page">
       <div class="page-wrap">
         <div class="editor">
-          <div class="subject"><input type="text" class="subject-input" placeholder="未定义标题"></div>
+          <div class="subject">
+            <input type="text" class="subject-input" placeholder="未定义标题">
+            <div class="tip">
+              可以使用“[标签]”增加标题标签 <span class="tag tag1">标签</span>
+            </div>
+          </div>
 
           <!--style给定宽度可以影响编辑器的最终宽度-->
           <script type="text/plain" id="myEditor" style="width:1000px;min-height:500px;">
