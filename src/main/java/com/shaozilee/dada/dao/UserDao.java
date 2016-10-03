@@ -102,5 +102,16 @@ public class UserDao {
         return user;
     }
 
+    public boolean setLastLoginTime(Integer uid,String date) throws SQLException{
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("UPDATE forum_user SET lastLoginTime=? WHERE uid=?");
+        ps.setString(1, date);
+        ps.setInt(2,uid);
+        int rows = ps.executeUpdate();
+        con.close();
+        return rows>0;
+    }
+
+
 
 }

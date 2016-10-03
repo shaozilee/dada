@@ -1,7 +1,6 @@
 package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.UserDao;
-import com.shaozilee.dada.pojo.ForumTopic;
 import com.shaozilee.dada.pojo.ForumUser;
 import com.shaozilee.dada.utils.AjaxCode;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Created by lee on 15-9-13.
@@ -47,6 +45,10 @@ public class MemberController extends AbstractController{
 
             ForumUser newUser = UserDao.getInstance().getUserByEmail(user.getEmail());
             if(newUser != null && newUser.getPassword().equals(user.getPassword())){
+                //更新用户最后登录的时间
+                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                boolean isSet = UserDao.getInstance().setLastLoginTime(newUser.uid,date);
+
                 request.getSession().setAttribute("user",newUser);
                 toJson(AjaxCode.SUC, response);
             }else{
