@@ -90,4 +90,17 @@ public class UserDao {
     }
 
 
+    public ForumUser getNewRegistUser() throws SQLException {
+        ForumUser user = null;
+        Connection con = DS.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM forum_user ORDER BY regDate DESC LIMIT 1");
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            user = (ForumUser)BeanUtil.getBean(ForumUser.class,rs);
+        }
+        con.close();
+        return user;
+    }
+
+
 }

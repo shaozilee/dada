@@ -24,6 +24,7 @@
               <li></li>
               <li>总帖数:${totalCount}</li>
               <li>今日共:${todayCount}</li>
+              <li style="color:#ffba06;">欢迎新注册用户：${newUser.userName}</li>
             </ul>
             <div class="top-right">
               <a class="btn btn-new" href="topic/new.html" target="_blank">发布帖子</a>

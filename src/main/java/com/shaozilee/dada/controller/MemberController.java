@@ -24,6 +24,7 @@ import java.util.logging.SimpleFormatter;
 @Controller
 public class MemberController extends AbstractController{
     public static Logger logger = LogManager.getLogger(MemberController.class);
+    public static ForumUser newUser = null;
 
     @RequestMapping("/login")
     public String login(@RequestParam(value="redirect", required=false, defaultValue="") String redirect,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -109,6 +110,7 @@ public class MemberController extends AbstractController{
         try{
             user = userDao.add(user);
             toJson(AjaxCode.SUC, response);
+            MemberController.newUser = user;
         }catch (Exception e){
             logger.error(e.getMessage());
             e.printStackTrace();

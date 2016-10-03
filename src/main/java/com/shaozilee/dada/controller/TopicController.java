@@ -2,6 +2,7 @@ package com.shaozilee.dada.controller;
 
 import com.shaozilee.dada.dao.PostDao;
 import com.shaozilee.dada.dao.TopicDao;
+import com.shaozilee.dada.dao.UserDao;
 import com.shaozilee.dada.pojo.ForumPost;
 import com.shaozilee.dada.pojo.ForumTopic;
 import com.shaozilee.dada.pojo.ForumUser;
@@ -59,6 +60,14 @@ public class TopicController extends AbstractController{
         //获取第一页主题数据
         List topicList = TopicDao.getInstance().getTopics(page, TOPIC_PAGE_SIZE);
         model.addAttribute("topicList",topicList);
+
+        //最新注册用户
+        if(MemberController.newUser == null){
+            MemberController.newUser = UserDao.getInstance().getNewRegistUser();
+        }
+        model.addAttribute("newUser",MemberController.newUser);
+
+
         return api?debugAPI(model):"index";
     }
 
